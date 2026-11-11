@@ -1,36 +1,6 @@
 {
-"updated": "2026-11-11T16:41+00:00",
+"updated": "2026-11-11T23:28+00:00",
 "jobs": [
-{
-"title": "Teacher of MFL",
-"school": "Tanbridge House School",
-"town": "Horsham",
-"lat": 51.0651,
-"lon": -0.3516,
-"miles": 17.5,
-"pay": "",
-"posted": "2026-11-09",
-"closes": "2026-11-23T09:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-mfl-tanbridge-house-school-horsham-west-sussex",
-"kind": "teach",
-"primary": false,
-"website": "http://www.tanbridge-house-sch.co.uk"
-},
-{
-"title": "Maths Teacher",
-"school": "The Sir Robert Woodard Academy",
-"town": "Sompting",
-"lat": 50.8346,
-"lon": -0.3312,
-"miles": 9.8,
-"pay": "£34,069 – £52,835",
-"posted": "2026-11-09",
-"closes": "2026-11-25T23:59",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/maths-teacher-a55d71d1-f781-4542-b938-24dd3950747c",
-"kind": "teach",
-"primary": false,
-"website": "http://www.srwa.woodard.co.uk"
-},
 {
 "title": "Teacher of Science",
 "school": "The Littlehampton Academy",
