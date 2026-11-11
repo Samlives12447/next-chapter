@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#FBF6EF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Next chapter">
+<title>Next Chapter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root{
+  --bg:#FBF6EF; --card:#FFFDFA; --line:#EEE3D6; --ink:#3E3832; --soft:#7E746A;
+  --peach:#E8A07E; --peach-soft:#FBE7DC; --sage:#8FB096; --sage-soft:#E6F0E7;
+  --sky:#9DB8D3; --sky-soft:#E8F0F8; --butter:#F6E7B8; --link:#B4623E;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+html,body{overflow-x:hidden}
+body{font:18px/1.55 Nunito,-apple-system,"Helvetica Neue",Arial,sans-serif;padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+main{max-width:640px;margin:0 auto;padding:28px 18px 24px}
+h1{font-size:30px;font-weight:800;margin:6px 0 4px;letter-spacing:-.2px}
+h2{font-size:23px;font-weight:800;margin:4px 0 6px}
+h3{font-size:19px;font-weight:700;margin:0 0 4px;line-height:1.3}
+p{margin:6px 0}
+.soft{color:var(--soft)}
+.small{font-size:15px}
+a{color:var(--link)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 18px;margin:14px 0}
+.card.peach{background:var(--peach-soft);border-color:#F3D3C2}
+.card.sage{background:var(--sage-soft);border-color:#D2E3D4}
+.card.sky{background:var(--sky-soft);border-color:#D3E1EE}
+.big{font-size:44px;font-weight:800;line-height:1;margin:4px 0}
+.btn{display:inline-block;border:0;border-radius:999px;background:var(--peach);color:#fff;font:700 17px Nunito,sans-serif;padding:12px 20px;text-decoration:none;cursor:pointer;margin-top:8px}
+.btn.quiet{background:transparent;color:var(--link);border:1.5px solid #EBC7B4;padding:10px 16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 14px;font:600 16px Nunito,sans-serif;cursor:pointer}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tag{display:inline-block;font-size:13px;font-weight:700;border-radius:999px;padding:2px 10px;margin:0 6px 6px 0}
+.tag.new{background:var(--butter)}
+.tag.prim{background:var(--sage-soft);color:#3F6B48}
+.tag.lead{background:var(--sky-soft);color:#3E5F80}
+.tag.open{background:var(--peach-soft);color:#9A4F2E}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.miles{white-space:nowrap;font-weight:700;color:var(--soft);font-size:16px}
+.found{font-size:14px;color:var(--soft);margin-top:10px;word-break:break-all}
+.map .leaflet-tile-pane{filter:saturate(.55) sepia(.12) brightness(1.04)}
+.map{height:340px;border-radius:20px;border:1px solid var(--line);margin:12px 0;z-index:0}
+input[type=search]{width:100%;font:17px Nunito,sans-serif;padding:12px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.step{display:flex;gap:14px;align-items:flex-start;cursor:pointer}
+.tick{flex:0 0 30px;height:30px;border-radius:50%;border:2px solid var(--sage);display:grid;place-items:center;color:#fff;font-weight:800;margin-top:2px}
+.done .tick{background:var(--sage)}
+.done h3{color:var(--soft)}
+nav{position:fixed;left:0;right:0;bottom:0;background:rgba(255,253,250,.96);border-top:1px solid var(--line);display:flex;justify-content:center;padding:8px 6px calc(8px + env(safe-area-inset-bottom));z-index:10}
+nav button{flex:1;max-width:120px;border:0;background:none;font:700 15px Nunito,sans-serif;color:var(--soft);padding:10px 2px;border-radius:14px;cursor:pointer}
+nav button.on{background:var(--peach-soft);color:#9A4F2E}
+.view{display:none}.view.on{display:block}
+.pin{width:16px;height:16px;border-radius:50%;border:2.5px solid #fff;box-shadow:0 1px 3px #0003}
+.pin.home{width:22px;height:22px;background:var(--peach)}
+.pin.school{background:var(--sage)}
+.pin.job{background:#E0B24A}
+.key{display:flex;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--soft)}
+.key i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.empty{text-align:center;padding:26px 10px}
+footer{font-size:13px;color:var(--soft);margin-top:30px;text-align:center}
+</style>
+</head>
+<body>
+<main>
+
+<!-- HOME -->
+<section id="v-home" class="view on">
+  <p class="soft small" id="today"></p>
+  <h1 id="hello">Hello Mathilde</h1>
+  <p class="soft">This is just a quiet place to look around. No rush and no pressure. Have a browse whenever you like.</p>
+
+  <div class="card peach">
+    <p class="soft small" style="margin:0">Teaching jobs near home right now</p>
+    <div class="big" id="h-count">…</div>
+    <p id="h-new" class="small"></p>
+    <button class="btn" data-go="jobs">Have a look</button>
+  </div>
+
+  <div class="card sage">
+    <p class="soft small" style="margin:0">One small thing, if you feel like it</p>
+    <h3 id="h-step" style="margin-top:6px"></h3>
+    <p id="h-step-why" class="small soft"></p>
+    <button class="btn quiet" data-go="plan">See your plan</button>
+  </div>
+
+  <div class="card sky">
+    <p class="soft small" style="margin:0">A good thing to remember</p>
+    <p id="h-kind" style="margin-top:6px"></p>
+  </div>
+
+  <p class="soft small" id="h-updated" style="text-align:center"></p>
+</section>
+
+<!-- JOBS -->
+<section id="v-jobs" class="view">
+  <h2>Jobs near home</h2>
+  <p class="soft small">Full-time teaching and leading jobs within 20 miles. This list updates by itself every few hours.</p>
+  <div class="chips" id="f-kind">
+    <button class="chip on" data-v="all">All</button>
+    <button class="chip" data-v="primary">Primary</button>
+    <button class="chip" data-v="lead">Leading</button>
+    <button class="chip" data-v="saved">Saved</button>
+  </div>
+  <div class="chips" id="f-miles">
+    <button class="chip" data-v="5">5 miles</button>
+    <button class="chip" data-v="10">10 miles</button>
+    <button class="chip on" data-v="20">20 miles</button>
+  </div>
+  <div class="chips" id="f-sort">
+    <button class="chip on" data-v="new">Newest first</button>
+    <button class="chip" data-v="near">Nearest first</button>
+    <button class="chip" data-v="close">Closing soon</button>
+  </div>
+  <div id="jobs-list"></div>
+  <div class="card">
+    <h3>Prep and independent schools</h3>
+    <p class="small">These mostly advertise on Tes rather than the government site, so they won't show up above.</p>
+    <a class="btn quiet" href="https://www.tes.com/jobs/browse/primary/sussex" target="_blank" rel="noopener">Look on Tes</a>
+  </div>
+</section>
+
+<!-- SCHOOLS -->
+<section id="v-schools" class="view">
+  <h2>Schools nearby</h2>
+  <p class="soft small">Every primary school within 10 miles of home, nearest first. Tap a dot on the map to see its name.</p>
+  <div id="map" class="map"></div>
+  <div class="key"><span><i style="background:var(--peach)"></i>Home</span><span><i style="background:var(--sage)"></i>Primary school</span><span><i style="background:#E0B24A"></i>Has a job open</span></div>
+  <p style="margin-top:14px"><input type="search" id="s-search" placeholder="Search by name or town"></p>
+  <div class="chips" id="s-type">
+    <button class="chip on" data-v="all">All</button>
+    <button class="chip" data-v="Council">Council</button>
+    <button class="chip" data-v="Academy">Academy</button>
+    <button class="chip" data-v="Independent">Independent</button>
+    <button class="chip" data-v="Special">Special</button>
+  </div>
+  <div id="schools-list"></div>
+</section>
+
+<!-- IDEAS -->
+<section id="v-ideas" class="view">
+  <h2>Ideas</h2>
+  <p class="soft small">Your experience opens a lot of doors. These are just ideas to think about, not things you have to do.</p>
+  <div id="ideas-list"></div>
+</section>
+
+<!-- PLAN -->
+<section id="v-plan" class="view">
+  <h2>My plan</h2>
+  <p class="soft small">Small steps, one at a time. Tap a step when it's done. Only you can see these ticks, on this phone.</p>
+  <div id="plan-list"></div>
+  <h2 style="margin-top:28px">Places to look</h2>
+  <div id="sites-list"></div>
+</section>
+
+<footer>Jobs from DfE Teaching Vacancies (Open Government Licence). Schools from DfE Get Information About Schools. Map © OpenStreetMap contributors.</footer>
+</main>
+
+<nav>
+  <button class="on" data-go="home">Home</button>
+  <button data-go="jobs">Jobs</button>
+  <button data-go="schools">Schools</button>
+  <button data-go="ideas">Ideas</button>
+  <button data-go="plan">Plan</button>
+</nav>
+
+<script>
+const HOME = [50.8619, -0.1110];
+const TV = "https://teaching-vacancies.service.gov.uk/jobs?location=BN1+9&radius=20&keyword=";
+
+const IDEAS = [
+  ["Assistant headteacher", "Join the senior team and lead one big area of the school, like the curriculum or how children are supported. You'd still teach part of the week. Your NPQSL is exactly the qualification for this.", "assistant headteacher"],
+  ["Deputy headteacher", "Second in charge. You'd run the day-to-day and step in for the head. Leading reading, maths and science makes a strong case.", "deputy headteacher"],
+  ["Phase or key stage leader", "Look after one part of the school, like Key Stage 1 or Year 5 and 6. A gentle step into leading.", "phase leader"],
+  ["Reading or English lead", "Lead how a whole school teaches reading and phonics. You've done this before, so it would feel familiar.", "english lead"],
+  ["Maths lead", "Lead maths across a school and support other teachers with it.", "maths lead"],
+  ["SENCO", "Help children with extra needs get the right support. It leads towards senior roles, and the training happens on the job.", "senco"],
+  ["Prep school teacher", "Smaller classes and longer holidays. Lots of good prep schools near Brighton, like Lancing Prep, Mowden and Cottesmore.", "prep"],
+  ["Early years leader", "Run a nursery or Reception class and the team around it.", "early years"],
+  ["Special school teacher", "Small classes for children with autism or other needs. Calmer, closer work with each child.", "special school"],
+  ["French teacher", "Teach French in a primary or secondary school. As a native speaker you'd really stand out.", "french"],
+  ["Working for a group of schools", "Many schools belong to a trust. Trusts hire experienced teachers to visit and support all their schools.", "school improvement"],
+  ["Training new teachers", "Help student teachers find their feet, at a university or with a local training group. Brighton, Sussex and Chichester all train teachers.", "mentor"],
+  ["Marking exams from home", "Mark SATs or other exams in the spring. A bit of extra money, done from the sofa. Pearson usually opens for this in December.", "examiner"],
+  ["A French school", "Teach the French curriculum, in French. Rare skills, and you have them.", "french"],
+  ["Education charities and museums", "Plan learning days and visits for schools. Creative, calmer, often fewer hours.", "education officer"],
+  ["Making teaching resources", "Companies like White Rose, Twinkl and Oak hire teachers to write and plan lessons. Often from home.", "curriculum"]
+];
+
+const PLAN = [
+  ["Have a look at the jobs here", "No need to apply for anything. Just get a feel for what's out there.", "jobs"],
+  ["Set up an email alert", "Teaching Vacancies can email you new jobs near home, so you don't need to keep checking. Choose BN1 9, 20 miles, full time.", "https://teaching-vacancies.service.gov.uk/jobseekers/subscriptions/new"],
+  ["Pick three ideas you like", "Have a look through Ideas and see which ones make you curious.", "ideas"],
+  ["Look up a few schools nearby", "Have a look at their websites. See which ones feel right.", "schools"],
+  ["Write about yourself once", "One page about you, your teaching and what you've led. Then each application is a small tweak, not a big job.", ""],
+  ["Talk to someone you trust", "A friend, a past colleague, or a head you've worked with. People are glad to help.", ""],
+  ["Remember the timing", "Most leading jobs for September appear between January and April. Right now is a good time to get ready, slowly.", ""]
+];
+
+const SITES = [
+  ["Teaching Vacancies", "The free government site. Almost every state school uses it.", "https://teaching-vacancies.service.gov.uk/jobs?location=BN1+9&radius=20"],
+  ["Tes Jobs", "Best for prep and independent schools.", "https://www.tes.com/jobs/browse/primary/sussex"],
+  ["Eteach", "Some school groups advertise here.", "https://www.eteach.com"],
+  ["MyNewTerm", "Independent schools' own job site.", "https://mynewterm.com"],
+  ["jobs.ac.uk", "For teacher training and university jobs.", "https://www.jobs.ac.uk"],
+  ["CharityJob", "Education charity and museum jobs.", "https://www.charityjob.co.uk"]
+];
+
+const KIND = [
+  "You have fifteen years of teaching and you've led reading, maths and science. That's a lot to offer.",
+  "Looking around isn't a commitment. It's just looking.",
+  "Schools are lucky to find someone with your experience. They'll be glad you applied.",
+  "There's no deadline on this. The right job will come along.",
+  "Being able to teach in two languages is rare. Not many teachers can say that.",
+  "It's fine to take your time. Most leading jobs appear in the new year."
+];
+
+// ---------- little helpers ----------
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("nc_" + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem("nc_" + k, JSON.stringify(v)); } catch (e) {} }
+};
+function miles(a, b) {
+  const R = 3958.8, r = x => x * Math.PI / 180;
+  const dLat = r(b[0] - a[0]), dLon = r(b[1] - a[1]);
+  const h = Math.sin(dLat/2)**2 + Math.cos(r(a[0])) * Math.cos(r(b[0])) * Math.sin(dLon/2)**2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+function niceDate(s) {
+  if (!s) return "";
+  const d = new Date(s.length > 10 ? s : s + "T12:00");
+  return d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
+}
+function ago(iso) {
+  const h = Math.round((Date.now() - new Date(iso)) / 36e5);
+  if (h < 1) return "less than an hour ago";
+  if (h < 24) return h + (h === 1 ? " hour ago" : " hours ago");
+  const d = Math.round(h / 24); return d + (d === 1 ? " day ago" : " days ago");
+}
+function daysLeft(s) { return Math.ceil((new Date(s) - Date.now()) / 864e5); }
+
+// ---------- state ----------
+let JOBS = [], SCHOOLS = [], UPDATED = null;
+const prevVisit = store.get("lastVisit", null);
+store.set("lastVisit", new Date().toISOString().slice(0, 10));
+let saved = new Set(store.get("saved", []));
+let done = new Set(store.get("done", []));
+const f = { kind: "all", miles: 20, sort: "new", type: "all", q: "" };
+
+// ---------- navigation ----------
+function go(v) {
+  document.querySelectorAll(".view").forEach(x => x.classList.toggle("on", x.id === "v-" + v));
+  document.querySelectorAll("nav button").forEach(x => x.classList.toggle("on", x.dataset.go === v));
+  window.scrollTo(0, 0);
+  if (v === "schools") setTimeout(drawMap, 30);
+  try { history.replaceState(null, "", "#" + v); } catch (e) {}
+}
+document.addEventListener("click", e => {
+  const g = e.target.closest("[data-go]"); if (g) { go(g.dataset.go); return; }
+});
+function chipGroup(id, key, after) {
+  $(id).addEventListener("click", e => {
+    const b = e.target.closest(".chip"); if (!b) return;
+    $(id).querySelectorAll(".chip").forEach(c => c.classList.toggle("on", c === b));
+    f[key] = isNaN(b.dataset.v) ? b.dataset.v : +b.dataset.v; after();
+  });
+}
+
+// ---------- home ----------
+function drawHome() {
+  const d = new Date();
+  $("#today").textContent = d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
+  const hr = d.getHours();
+  $("#hello").textContent = (hr < 12 ? "Good morning" : hr < 18 ? "Good afternoon" : "Good evening") + ", Mathilde";
+  $("#h-count").textContent = JOBS.length;
+  const fresh = JOBS.filter(isNew).length;
+  $("#h-new").textContent = prevVisit
+    ? (fresh ? fresh + (fresh === 1 ? " new one" : " new ones") + " since you last looked." : "Nothing new since you last looked. That's fine, new ones come along most days.")
+    : "Full time, within 20 miles of home.";
+  const next = PLAN.find((p, i) => !done.has(i)) || ["All done. Lovely.", "Have a browse whenever you like.", ""];
+  $("#h-step").textContent = next[0]; $("#h-step-why").textContent = next[1];
+  $("#h-kind").textContent = KIND[Math.floor(Date.now() / 864e5) % KIND.length];
+  $("#h-updated").textContent = UPDATED ? "Jobs last checked " + ago(UPDATED) + "." : "";
+}
+function isNew(j) {
+  if (!j.posted) return false;
+  if (prevVisit) return j.posted >= prevVisit;
+  return (Date.now() - new Date(j.posted + "T12:00")) / 864e5 <= 3;
+}
+
+// ---------- jobs ----------
+function drawJobs() {
+  let list = JOBS.filter(j => j.miles <= f.miles);
+  if (f.kind === "primary") list = list.filter(j => j.primary);
+  if (f.kind === "lead") list = list.filter(j => j.kind === "lead");
+  if (f.kind === "saved") list = JOBS.filter(j => saved.has(j.url));
+  list.sort(f.sort === "near" ? (a, b) => a.miles - b.miles
+          : f.sort === "close" ? (a, b) => (a.closes || "9").localeCompare(b.closes || "9")
+          : (a, b) => (b.posted || "").localeCompare(a.posted || ""));
+  if (!list.length) {
+    $("#jobs-list").innerHTML = `<div class="card empty"><h3>${f.kind === "saved" ? "Nothing saved yet" : "Nothing here right now"}</h3>
+      <p class="soft small">${f.kind === "saved" ? "Tap “Save for later” on any job and it will appear here." : "That's normal. New jobs come along most days, and this list checks by itself."}</p></div>`;
+    return;
+  }
+  $("#jobs-list").innerHTML = list.map(j => {
+    const left = daysLeft(j.closes);
+    return `<div class="card">
+      <div>${isNew(j) ? '<span class="tag new">New</span>' : ""}${j.primary ? '<span class="tag prim">Primary</span>' : ""}${j.kind === "lead" ? '<span class="tag lead">Leading</span>' : ""}</div>
+      <div class="row"><h3>${esc(j.title)}</h3><span class="miles">${j.miles} mi</span></div>
+      <p class="soft">${esc(j.school)}${j.town ? ", " + esc(j.town) : ""}</p>
+      ${j.pay ? `<p class="small">${esc(j.pay)}</p>` : ""}
+      <p class="small"><b>Closes ${niceDate(j.closes)}</b>${left >= 0 && left <= 3 ? " (soon)" : ""}</p>
+      <a class="btn" href="${esc(j.url)}" target="_blank" rel="noopener">Read the advert</a>
+      <button class="btn quiet" data-save="${esc(j.url)}">${saved.has(j.url) ? "Saved" : "Save for later"}</button>
+      <p class="found">Found on Teaching Vacancies:<br><a href="${esc(j.url)}" target="_blank" rel="noopener">${esc(j.url)}</a></p>
+    </div>`;
+  }).join("");
+}
+$("#jobs-list").addEventListener("click", e => {
+  const b = e.target.closest("[data-save]"); if (!b) return;
+  const u = b.dataset.save; saved.has(u) ? saved.delete(u) : saved.add(u);
+  store.set("saved", [...saved]); drawJobs();
+});
+
+// ---------- schools ----------
+let map, mapDrawn = false;
+function jobAt(name) {
+  const n = name.toLowerCase().replace(/^the /, "");
+  return JOBS.find(j => j.school.toLowerCase().replace(/^the /, "") === n);
+}
+function drawMap() {
+  if (mapDrawn || !window.L || !SCHOOLS.length) return;
+  mapDrawn = true;
+  map = L.map("map", { scrollWheelZoom: false });
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    { maxZoom: 18, attribution: "© OpenStreetMap" }).addTo(map);
+  const icon = c => L.divIcon({ className: "", html: `<div class="pin ${c}"></div>`, iconSize: [16, 16], iconAnchor: [8, 8] });
+  SCHOOLS.forEach(s => {
+    if (!s.lat) return;
+    const job = jobAt(s.name);
+    L.marker([s.lat, s.lon], { icon: icon(job ? "job" : "school") }).addTo(map)
+      .bindPopup(`<b>${esc(s.name)}</b><br>${s.miles} miles · ${esc(s.type)}${job ? "<br>Has a job open" : ""}`);
+  });
+  JOBS.forEach(j => {
+    if (SCHOOLS.some(s => jobAt(s.name) === j)) return;
+    L.marker([j.lat, j.lon], { icon: icon("job") }).addTo(map).bindPopup(`<b>${esc(j.school)}</b><br>${esc(j.title)}<br>${j.miles} miles`);
+  });
+  L.marker(HOME, { icon: L.divIcon({ className: "", html: '<div class="pin home"></div>', iconSize: [22, 22], iconAnchor: [11, 11] }), zIndexOffset: 1000 })
+    .addTo(map).bindPopup("<b>Home</b>");
+  map.setView(HOME, 10);
+}
+function drawSchools() {
+  const q = f.q.trim().toLowerCase();
+  const list = SCHOOLS.filter(s => (f.type === "all" || s.type === f.type) && (!q || (s.name + " " + s.town).toLowerCase().includes(q)));
+  $("#schools-list").innerHTML = list.length ? list.map(s => {
+    const job = jobAt(s.name);
+    return `<div class="card">
+      ${job ? '<span class="tag open">Has a job open</span>' : ""}
+      <div class="row"><h3>${esc(s.name)}</h3><span class="miles">${s.miles} mi</span></div>
+      <p class="soft small">${esc(s.town)} · ${esc(s.type)} · ages ${esc(s.ages)}${s.pupils ? " · " + esc(s.pupils) + " children" : ""}</p>
+      ${s.trust ? `<p class="soft small">${esc(s.trust)}</p>` : ""}
+      ${s.website ? `<a class="btn quiet" href="${esc(s.website)}" target="_blank" rel="noopener">Visit their website</a>` : ""}
+      ${job ? `<a class="btn" href="${esc(job.url)}" target="_blank" rel="noopener">See the job</a>` : ""}
+    </div>`;
+  }).join("") : `<div class="card empty"><p class="soft">No schools match that. Try another word.</p></div>`;
+}
+$("#s-search").addEventListener("input", e => { f.q = e.target.value; drawSchools(); });
+
+// ---------- ideas & plan ----------
+function drawIdeas() {
+  $("#ideas-list").innerHTML = IDEAS.map(i => `<div class="card">
+    <h3>${esc(i[0])}</h3><p class="small">${esc(i[1])}</p>
+    <a class="btn quiet" href="${TV + encodeURIComponent(i[2]).replace(/%20/g, "+")}" target="_blank" rel="noopener">See jobs like this</a>
+  </div>`).join("");
+}
+function drawPlan() {
+  $("#plan-list").innerHTML = PLAN.map((p, i) => {
+    const link = p[2] ? (p[2].startsWith("http")
+      ? `<a class="small" href="${p[2]}" target="_blank" rel="noopener">Set it up</a>`
+      : `<a class="small" href="#${p[2]}" data-go="${p[2]}">Go there</a>`) : "";
+    return `<div class="card step ${done.has(i) ? "done" : ""}" data-step="${i}">
+      <div class="tick">${done.has(i) ? "✓" : ""}</div>
+      <div><h3>${esc(p[0])}</h3><p class="small soft">${esc(p[1])}</p>${link}</div></div>`;
+  }).join("");
+  $("#sites-list").innerHTML = SITES.map(s => `<div class="card">
+    <h3>${esc(s[0])}</h3><p class="small soft">${esc(s[1])}</p>
+    <a class="small" href="${s[2]}" target="_blank" rel="noopener">${esc(s[2].replace(/^https?:\/\//, "").split("?")[0])}</a></div>`).join("");
+}
+$("#plan-list").addEventListener("click", e => {
+  if (e.target.closest("a")) return;
+  const c = e.target.closest("[data-step]"); if (!c) return;
+  const i = +c.dataset.step; done.has(i) ? done.delete(i) : done.add(i);
+  store.set("done", [...done]); drawPlan(); drawHome();
+});
+
+// ---------- start ----------
+chipGroup("#f-kind", "kind", drawJobs);
+chipGroup("#f-miles", "miles", drawJobs);
+chipGroup("#f-sort", "sort", drawJobs);
+chipGroup("#s-type", "type", drawSchools);
+drawIdeas(); drawPlan(); drawHome();
+
+Promise.all([
+  fetch("data/jobs.json?t=" + Date.now(), { cache: "no-store" }).then(r => r.json()).catch(() => null),
+  fetch("data/schools.json", { cache: "no-cache" }).then(r => r.json()).catch(() => [])
+]).then(([j, s]) => {
+  if (j) { JOBS = j.jobs; UPDATED = j.updated; }
+  SCHOOLS = s;
+  drawHome(); drawJobs(); drawSchools();
+  const start = location.hash.slice(1);
+  if (["jobs","schools","ideas","plan"].includes(start)) go(start);
+});
+</script>
+</body>
+</html>
