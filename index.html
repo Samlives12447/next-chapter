@@ -81,6 +81,11 @@ dt{color:var(--sub)} dd{margin:0}
 .paybar .ups{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--accent)}
 .payscale{display:flex;justify-content:space-between;max-width:520px;font-size:12px;color:var(--faint)}
 .paykey{font-size:12px;color:var(--sub);margin:4px 0 14px}.paykey i{display:inline-block;width:2px;height:10px;background:var(--accent);margin-right:6px;vertical-align:-1px}
+.q{padding:14px 16px;border-bottom:1px solid var(--line)}
+.q label{display:block;font-weight:500;margin-bottom:8px}
+.q textarea{width:100%;font:15px/1.5 Roboto,sans-serif;border:1px solid #D9D2C8;border-radius:8px;padding:10px 12px;resize:vertical;background:var(--surface);color:var(--ink)}
+.q textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.q .chips{display:flex;flex-wrap:wrap;gap:8px}
 .empty{padding:48px 16px;text-align:center;color:var(--sub)}
 .map{height:340px;border-bottom:1px solid var(--line);z-index:0}
 .map .leaflet-tile-pane{filter:saturate(.55) sepia(.1) brightness(1.03)}
@@ -129,7 +134,7 @@ nav.bottom{display:none}
     <button data-go="saved"><span>Saved</span><span class="count" id="c-saved"></span></button>
     <button data-go="schools"><span>Schools</span><span class="count" id="c-schools"></span></button>
     <button data-go="ideas"><span>Career options</span></button>
-    <button data-go="plan"><span>Plan</span><span class="count" id="c-plan"></span></button>
+    <button data-go="plan"><span>Questions</span><span class="count" id="c-plan"></span></button>
   </aside>
 
   <main>
@@ -147,7 +152,9 @@ nav.bottom{display:none}
         <span class="meta" id="jobs-meta"></span>
       </div>
       <div id="jobs-list"></div>
-      <div class="note">Full-time primary teaching and leadership posts within 20 miles, from DfE Teaching Vacancies. Secondary schools and colleges are excluded using the DfE schools register. Updated five times a day. Independent and prep schools advertise mainly on <a href="https://www.tes.com/jobs/browse/primary/sussex" target="_blank" rel="noopener">Tes</a>.</div>
+      <div class="note">Full-time teaching and leadership posts within 20 miles, from DfE Teaching Vacancies. Primary and secondary are separated using the DfE schools register; colleges are excluded. Updated five times a day. Independent and prep schools advertise mainly on <a href="https://www.tes.com/jobs/browse/primary/sussex" target="_blank" rel="noopener">Tes</a>.</div>
+      <div class="toolbar"><b style="font-weight:500">Job sites</b></div>
+      <div id="sites-list"></div>
     </section>
 
     <section id="v-schools" class="view">
@@ -167,17 +174,17 @@ nav.bottom{display:none}
 
     <section id="v-ideas" class="view">
       <div class="toolbar" id="c-groups"></div>
-      <div class="note">25 roles open to an experienced primary teacher and leader. Pay is approximate for England outside London, from 2026/27 pay scales and recent adverts. Select a role for detail and sources.</div>
+      <div class="note">27 roles open to an experienced primary teacher and leader, including two secondary options. Pay is approximate for England outside London, from 2026/27 pay scales and recent adverts. Select a role for detail and sources.</div>
       <div id="ideas-list"></div>
       <div class="toolbar"><b style="font-weight:500">What the qualifications open</b></div>
       <div id="quals-list"></div>
     </section>
 
     <section id="v-plan" class="view">
-      <div class="note">Most leadership posts for September start are advertised January to April.</div>
-      <div id="plan-list"></div>
-      <div class="toolbar"><b style="font-weight:500">Job sites</b></div>
-      <div id="sites-list"></div>
+      <div class="note">Open questions about what comes next. Answers save automatically on this device only. The choice questions are used to suggest roles and job searches at the bottom of the page. <a href="#" id="jump-matches">See matching roles ↓</a> <span id="saved-note"></span></div>
+      <div id="quiz"></div>
+      <div id="matches"></div>
+      <div class="toolbar"><button class="btn" id="export">Download my answers</button></div>
     </section>
 
     <footer>Teaching Vacancies data under the Open Government Licence v3. Map © OpenStreetMap contributors.</footer>
@@ -189,7 +196,7 @@ nav.bottom{display:none}
   <button data-go="saved">Saved</button>
   <button data-go="schools">Schools</button>
   <button data-go="ideas">Options</button>
-  <button data-go="plan">Plan</button>
+  <button data-go="plan">Questions</button>
 </nav>
 
 <script>
@@ -351,7 +358,19 @@ const CAREERS = [
    "UK leadership experience. Recruitment mostly runs September to January for the following August.",
    ["QTS", "NPQSL", "French"], "International school year.",
    [["COBIS: British international schools", "https://www.cobis.org.uk/"], ["Council of International Schools", "https://www.cois.org/"], ["Tes international jobs", "https://www.tes.com/jobs/browse/international"]],
-   "https://www.tes.com/jobs/browse/international"]
+   "https://www.tes.com/jobs/browse/international"],
+  ["Head of languages / French (secondary)", "Secondary (other option)", 50000, 63000, "£50,000 – £63,000 (UPS + TLR)",
+   "Leads the modern languages department in a secondary school: curriculum, GCSE results and a team of teachers. French is a shortage subject.",
+   "QTS covers secondary teaching. Native French and subject leadership experience are directly relevant; KS3 experience helps.",
+   ["QTS", "French", "Subject leadership"], "School year.",
+   [STPCD, ["Teaching Vacancies: languages leadership near BN1", "https://teaching-vacancies.service.gov.uk/jobs?keyword=head+of+languages&location=BN1+9&radius=20"]],
+   "https://teaching-vacancies.service.gov.uk/jobs?keyword=french&location=BN1+9&radius=20"],
+  ["Head of year / pastoral or transition lead (secondary)", "Secondary (other option)", 50000, 60000, "£50,000 – £60,000 (UPS + TLR)",
+   "Leads the welfare, behaviour and progress of a year group. Year 7 and transition roles link closely with primary schools.",
+   "QTS plus pastoral or inclusion leadership. Primary experience is an advantage for Year 7 and transition posts.",
+   ["QTS", "Inclusion", "Subject leadership"], "School year.",
+   [STPCD],
+   "https://teaching-vacancies.service.gov.uk/jobs?keyword=head+of+year&location=BN1+9&radius=20"]
 ];
 
 const QUALS = [
@@ -362,15 +381,6 @@ const QUALS = [
   ["Native French", "Advantage for primary MFL leadership, international schools in French-speaking countries, French-system schools and EU-facing roles.", [["COBIS", "https://www.cobis.org.uk/"], ["Tes international jobs", "https://www.tes.com/jobs/browse/international"]]]
 ];
 
-const PLAN = [
-  ["Teaching Vacancies job alert", "BN1 9, 20 miles, full time. Roles: assistant head, deputy head, head of phase, SENCO, teacher.", "https://teaching-vacancies.service.gov.uk/jobseekers/subscriptions/new"],
-  ["Tes job alert", "Primary, East and West Sussex. Keywords: assistant head, deputy head, head of prep.", "https://www.tes.com/jobs/"],
-  ["Update CV", "Two pages. Leadership roles, NPQSL, master's, measurable impact.", ""],
-  ["Leadership personal statement", "Two pages: NPQSL, reading, maths and science leadership, evidence of impact.", ""],
-  ["Referees", "Current head plus one other senior leader.", ""],
-  ["Contact local trusts", "UBAT, Pioneer Academy, GLF, Sussex Learning Trust, Bohunt: CV and note re leadership posts from September.", ""],
-  ["Pearson examiner / marker application", "KS2 marker recruitment usually opens in December.", "https://qualifications.pearson.com/en/support/support-for-you/work-for-pearson/become-an-examiner-or-moderator.html"]
-];
 
 const SITES = [
   ["Teaching Vacancies", "State schools and academies (DfE)", "https://teaching-vacancies.service.gov.uk/jobs?location=BN1+9&radius=20"],
@@ -396,7 +406,7 @@ let JOBS = [], SCHOOLS = [], UPDATED = null, view = "jobs", openId = null, shown
 let saved = new Set(store.get("saved", []));
 let seen = new Set(store.get("seen", []));
 let done = new Set(store.get("done", []));
-const f = { primary: false, lead: false, miles: 20, sort: "new", type: "all", q: "" };
+const f = { sec: false, primary: false, lead: false, miles: 20, sort: "new", type: "all", q: "" };
 
 function go(v) {
   view = v; openId = null;
@@ -412,10 +422,9 @@ function go(v) {
 document.addEventListener("click", e => { const g = e.target.closest("[data-go]"); if (g) go(g.dataset.go); });
 
 function counts() {
-  $("#c-new").textContent = JOBS.filter(j => !seen.has(j.url)).length || "";
+  $("#c-new").textContent = JOBS.filter(j => j.primary && !seen.has(j.url)).length || "";
   $("#c-saved").textContent = saved.size || "";
   $("#c-schools").textContent = SCHOOLS.length || "";
-  $("#c-plan").textContent = (PLAN.length - done.size) || "";
   if (UPDATED) $("#updated").textContent = "Updated " + new Date(UPDATED).toLocaleString("en-GB", { weekday: "short", hour: "2-digit", minute: "2-digit" });
 }
 function drawJobs() {
@@ -425,15 +434,17 @@ function drawJobs() {
   list.sort(f.sort === "near" ? (a, b) => a.miles - b.miles
           : f.sort === "close" ? (a, b) => (a.closes || "9").localeCompare(b.closes || "9")
           : (a, b) => (b.posted || "").localeCompare(a.posted || ""));
-  shown = list;
-  $("#jobs-meta").textContent = list.length + " of " + JOBS.length;
-  if (!list.length) {
-    $("#jobs-list").innerHTML = `<div class="empty">${view === "saved" ? "No saved jobs." : "No jobs match these filters."}</div>`;
-    return;
-  }
-  $("#jobs-list").innerHTML = list.map((j, i) => {
+  const prim = view === "saved" ? list : list.filter(j => j.primary), sec = view === "saved" ? [] : list.filter(j => !j.primary);
+  shown = prim.concat(f.sec ? sec : []);
+  $("#jobs-meta").textContent = prim.length + " primary" + (view === "saved" ? "" : " · " + sec.length + " secondary");
+  const empty = `<div class="empty">${view === "saved" ? "No saved jobs." : "No primary jobs match these filters right now."}</div>`;
+  const secHead = view === "saved" ? "" : `<div class="toolbar sechead" data-togglesec="1" style="cursor:pointer;background:var(--hover)"><b style="font-weight:500">Secondary schools – other options (${sec.length})</b><span class="spacer"></span><span class="meta">${f.sec ? "Hide" : "Show"}</span></div>`;
+  $("#jobs-list").innerHTML = (prim.length ? rows(prim, 0) : empty) + secHead + (f.sec ? rows(sec, prim.length) : "");
+}
+function rows(list, offset) {
+  return list.map((j, k) => { const i = k + offset;
     const unread = !seen.has(j.url), left = daysLeft(j.closes);
-    const tags = (j.kind === "lead" ? '<span class="tag l">Leadership</span>' : "");
+    const tags = (j.primary ? "" : '<span class="tag j">Secondary</span>') + (j.kind === "lead" ? '<span class="tag l">Leadership</span>' : "");
     return `<div class="row ${unread ? "unread" : "read"}" data-i="${i}">
       <button class="star ${saved.has(j.url) ? "on" : ""}" data-star="${esc(j.url)}" aria-label="Save">${saved.has(j.url) ? "★" : "☆"}</button>
       <div class="who">${esc(j.school)}</div>
@@ -458,6 +469,7 @@ function drawJobs() {
   }).join("");
 }
 $("#jobs-list").addEventListener("click", e => {
+  if (e.target.closest("[data-togglesec]")) { f.sec = !f.sec; drawJobs(); return; }
   const s = e.target.closest("[data-star]");
   if (s) { const u = s.dataset.star; saved.has(u) ? saved.delete(u) : saved.add(u); store.set("saved", [...saved]); counts(); drawJobs(); return; }
   if (e.target.closest("a")) return;
@@ -559,22 +571,187 @@ document.addEventListener("click", e => {
   if (e.target.closest("a")) return;
   const r = e.target.closest("[data-c]"); if (r) { const i = +r.dataset.c; cOpen = cOpen === i ? null : i; drawIdeas(); }
 });
-function drawPlan() {
-  $("#plan-list").innerHTML = PLAN.map((p, i) => `<div class="row ${done.has(i) ? "done read" : ""}" data-step="${i}">
-    <div class="check" style="margin-left:8px">${done.has(i) ? "✓" : ""}</div>
-    <div class="what" style="white-space:normal"><b>${esc(p[0])}</b> – ${esc(p[1])}</div>
-    <div class="when">${p[2] ? `<a href="${p[2]}" target="_blank" rel="noopener">Open</a>` : ""}</div>
-  </div>`).join("");
+// ---------- questionnaire ----------
+const QS = [
+  ["Now", [
+    ["energy", "text", "Which parts of your work give you the most energy?"],
+    ["drain", "text", "Which parts drain you?"],
+    ["goodday", "text", "Describe a recent working day you would happily repeat. What happened?"],
+    ["askedfor", "text", "What do colleagues come to you for?"],
+    ["proud", "text", "What are you proudest of in your career so far?"]
+  ]],
+  ["What matters next", [
+    ["values", "multi", "Which of these matter most in your next role?", [
+      ["pay", "Higher pay"], ["lead", "Leading people"], ["children", "Working with children every day"], ["balance", "Better work-life balance"],
+      ["home", "Working from home some days"], ["holidays", "School holidays"], ["variety", "Variety and travel"], ["creative", "Creative work"],
+      ["research", "Research and ideas"], ["policy", "Influence beyond one school"], ["send", "Supporting children with SEND"],
+      ["french", "Using French"], ["train", "Training and coaching adults"], ["stability", "Security and pension"]]],
+    ["places", "multi", "Where could you see yourself working?", [
+      ["primary", "A primary school"], ["secondary", "A secondary school"], ["across", "Across several schools"], ["university", "A university"],
+      ["office", "An office or organisation"], ["home", "Mostly from home"], ["abroad", "Abroad"]]],
+    ["kids", "single", "How much time with children do you want?", [
+      ["daily", "Every day"], ["some", "Some days"], ["rare", "Occasionally"], ["none", "Not necessary"]]],
+    ["lead", "single", "What kind of leading appeals?", [
+      ["whole", "Leading a whole school or organisation"], ["part", "Leading part of a school or a team"],
+      ["spec", "Leading projects or specialist work"], ["expert", "Being the expert, not the manager"], ["none", "No leadership"]]],
+    ["study", "single", "How much further study would you take on?", [
+      ["doctorate", "Several years (e.g. a doctorate)"], ["course", "A course of a year or so"], ["short", "Short courses only"], ["none", "None"]]],
+    ["paygoal", "single", "What pay are you aiming for?", [
+      ["same", "Similar to now"], ["plus", "£5,000–£10,000 more"], ["65", "£65,000 or more"], ["80", "£80,000 or more"]]],
+    ["travel", "single", "How far would you travel or move?", [
+      ["local", "Within 20 miles"], ["hour", "Up to an hour"], ["hybrid", "Further if partly from home"], ["move", "Would relocate, including abroad"]]]
+  ]],
+  ["Imagine", [
+    ["tuesday", "text", "Five years from now: describe an ordinary Tuesday, from morning to evening."],
+    ["nolimits", "text", "If money and qualifications were no obstacle, what would you do?"],
+    ["curious", "text", "What have you always been curious about but never tried?"],
+    ["learn", "text", "What would you like to learn next?"],
+    ["impact", "text", "What difference would you like your work to make, and for whom?"]
+  ]],
+  ["How it feels", [
+    ["ready", "scale", "How ready do you feel to change role?", [["1", "Not yet"], ["2", ""], ["3", "Unsure"], ["4", ""], ["5", "Ready now"]]],
+    ["miss", "text", "What would you miss most if you left your current school?"],
+    ["never", "text", "What would you never want to do again?"],
+    ["worry", "text", "What concerns you about a change?"],
+    ["easier", "text", "What would make a move easier?"],
+    ["else", "text", "Anything else on your mind?"]
+  ]]
+];
+const QLIST = QS.flatMap(s => s[1]);
+let A = store.get("answers", {});
+const KW = [
+  [/french|france|langu/i, "french"], [/abroad|travel|another country|overseas|switzerland|belgium|monaco/i, "variety"],
+  [/research|stud|psycholog|why children|evidence|read about/i, "research"], [/send|autis|special|inclusion|needs|neuro|dyslex/i, "send"],
+  [/creat|design|writ|art|make|build|music/i, "creative"], [/policy|system|government|national|change things|bigger/i, "policy"],
+  [/home|family|balance|time for|tired|exhaust|stress|burn/i, "balance"], [/lead|manag|team|run a/i, "lead"],
+  [/coach|mentor|train|adults|colleagues|staff development/i, "train"], [/money|pay|salary|afford/i, "pay"], [/holiday/i, "holidays"]
+];
+// per career: [lead, kids, places[], study needed, values[]]
+const FIT = [
+  ["part","daily",["primary","secondary"],"none",["lead","stability","holidays","pay"]],
+  ["whole","some",["primary"],"none",["lead","stability","holidays","pay"]],
+  ["whole","some",["primary"],"course",["lead","stability","holidays","pay"]],
+  ["whole","some",["primary"],"none",["lead","holidays","pay"]],
+  ["whole","rare",["across"],"course",["lead","variety","pay","policy"]],
+  ["whole","rare",["across","office"],"none",["lead","policy","variety","pay"]],
+  ["spec","rare",["across","home"],"none",["variety","train","policy","pay"]],
+  ["spec","rare",["across","office"],"none",["variety","train","stability","policy"]],
+  ["spec","rare",["across","office"],"none",["send","stability","policy"]],
+  ["expert","rare",["across","home"],"none",["variety","policy","stability","pay"]],
+  ["expert","rare",["across"],"none",["variety","pay"]],
+  ["expert","none",["office","home"],"none",["policy","balance","home","stability"]],
+  ["expert","none",["office","home"],"none",["research","policy","balance","home","stability"]],
+  ["expert","some",["across"],"doctorate",["send","research","stability"]],
+  ["part","daily",["primary","secondary"],"course",["send","lead","holidays"]],
+  ["expert","daily",["primary","secondary","across"],"none",["train","creative","holidays"]],
+  ["expert","rare",["university"],"course",["research","train","creative"]],
+  ["spec","rare",["across","office"],"none",["train","lead","variety"]],
+  ["expert","none",["home","office"],"none",["train","home","variety","balance"]],
+  ["expert","rare",["home","across"],"none",["home","variety","creative","balance","pay"]],
+  ["expert","none",["office","home"],"none",["creative","home","balance"]],
+  ["expert","none",["office","home"],"none",["research","balance","home"]],
+  ["spec","none",["office"],"short",["train","variety","balance","home"]],
+  ["expert","none",["home"],"short",["creative","home","balance"]],
+  ["whole","some",["abroad"],"none",["french","variety","lead","pay"]],
+  ["part","daily",["secondary"],"none",["french","lead","holidays"]],
+  ["part","daily",["secondary"],"none",["send","lead","holidays"]]
+];
+const LEADS = ["whole","part","spec","expert","none"], KIDS = ["daily","some","rare","none"];
+const LABEL = Object.fromEntries(QS[1][1].flatMap(q => (q[3] || []).map(o => [q[0] + ":" + o[0], o[1]])));
+
+function textTags() {
+  const t = QLIST.filter(q => q[1] === "text").map(q => A[q[0]] || "").join(" ");
+  const out = {};
+  KW.forEach(([re, tag]) => { if (re.test(t)) out[tag] = true; });
+  return out;
+}
+function matches() {
+  const choiceCount = ["values","places","kids","lead","study","paygoal","travel"].filter(k => A[k] && A[k].length).length;
+  if (choiceCount < 3) return null;
+  const vals = new Set(A.values || []), places = new Set(A.places || []), tt = textTags();
+  return CAREERS.map((c, i) => {
+    const [lead, kids, pl, study, cv] = FIT[i]; let s = 0; const why = [];
+    if (A.lead) { const d = Math.abs(LEADS.indexOf(A.lead) - LEADS.indexOf(lead)); s += [4, 1, -1, -3, -4][d]; if (!d) why.push(LABEL["lead:" + lead]); }
+    if (A.kids) { const d = Math.abs(KIDS.indexOf(A.kids) - KIDS.indexOf(kids)); s += [4, 1, -2, -4][d]; if (!d) why.push(LABEL["kids:" + kids]); }
+    pl.forEach(p => { if (places.has(p)) { s += 3; why.push(LABEL["places:" + p]); } });
+    if (places.size && !pl.some(p => places.has(p))) s -= 2;
+    cv.forEach(v => { if (vals.has(v)) { s += 2; why.push(LABEL["values:" + v]); } else if (tt[v]) { s += 1; why.push("your written answers"); } });
+    if (study === "doctorate" && A.study && A.study !== "doctorate") s -= 6;
+    if (study === "course" && A.study === "none") s -= 2;
+    const max = c[3];
+    if (A.paygoal === "plus") s += max >= 60000 ? 1 : -1;
+    if (A.paygoal === "65") s += max >= 65000 ? 2 : -3;
+    if (A.paygoal === "80") s += max >= 80000 ? 3 : -4;
+    if (pl.includes("abroad") && A.travel && A.travel !== "move") s -= 8;
+    if (pl.includes("secondary") && !pl.includes("primary") && !places.has("secondary")) s -= 3;
+    if (A.travel === "local" && (i === 9 || i === 10 || i === 13)) s -= 1;
+    return { i, s, why: [...new Set(why)].slice(0, 4) };
+  }).sort((a, b) => b.s - a.s).slice(0, 6);
+}
+function drawQuiz() {
+  const answered = QLIST.filter(q => A[q[0]] && String(A[q[0]]).length).length;
+  $("#c-plan").textContent = answered ? answered + "/" + QLIST.length : "";
+  $("#quiz").innerHTML = QS.map(([sec, qs]) => `<div class="toolbar"><b style="font-weight:500">${esc(sec)}</b></div>` + qs.map(([id, type, q, opts]) => {
+    let input = "";
+    if (type === "text") input = `<textarea data-q="${id}" rows="3" placeholder="Write as much or as little as you like">${esc(A[id] || "")}</textarea>`;
+    else input = `<div class="chips">${opts.map(([v, l]) => {
+      const on = type === "multi" ? (A[id] || []).includes(v) : A[id] === v;
+      return `<button class="chip ${on ? "on" : ""}" data-qid="${id}" data-qt="${type}" data-v="${v}">${type === "scale" ? v + (l ? " " + esc(l) : "") : esc(l)}</button>`;
+    }).join("")}</div>`;
+    return `<div class="q"><label>${esc(q)}</label>${input}</div>`;
+  }).join("")).join("");
+  drawMatches();
+}
+function drawMatches() {
+  const m = matches();
+  if (!m) { $("#matches").innerHTML = `<div class="note">Answer at least three of the choice questions in “What matters next” to see roles and searches that fit.</div>`; return; }
+  const wantSec = (A.places || []).includes("secondary"), wantLead = A.lead === "whole" || A.lead === "part";
+  const places = A.places || [], inSchool = !places.length || places.includes("primary") || places.includes("secondary");
+  const jobs = !inSchool ? [] : JOBS.filter(j => (j.primary ? (!places.length || places.includes("primary")) : wantSec) && (!wantLead || j.kind === "lead" || /tlr|lead|head|senco|second in/i.test(j.title + j.pay)));
+  $("#matches").innerHTML = `<div class="toolbar"><b style="font-weight:500">Roles that fit your answers</b><span class="spacer"></span><span class="meta">Updates as you answer</span></div>` +
+    m.map(({ i, why }) => { const c = CAREERS[i]; return `<div class="row read" style="cursor:default;align-items:flex-start;padding-top:10px;padding-bottom:10px">
+      <div class="who" style="padding-left:8px;font-weight:500;white-space:normal">${esc(c[0])}</div>
+      <div class="what" style="white-space:normal">${why.map(w => `<span class="tag p">${esc(w)}</span>`).join("")}<br>${esc(c[4])}
+        <br><a href="#ideas" data-opencareer="${i}">Details</a> · <a href="${c[10]}" target="_blank" rel="noopener">Live jobs</a></div></div>`; }).join("") +
+    `<div class="toolbar"><b style="font-weight:500">Open jobs in the list that fit</b></div>` +
+    (jobs.length ? jobs.map(j => `<div class="row read" style="cursor:default"><div class="who" style="padding-left:8px">${esc(j.school)}</div>
+      <div class="what">${j.primary ? "" : '<span class="tag j">Secondary</span>'}<b>${esc(j.title)}</b> – ${j.miles} mi</div>
+      <div class="when"><a href="${esc(j.url)}" target="_blank" rel="noopener">Advert</a></div></div>`).join("")
+      : `<div class="empty">${inSchool ? "None in the current list. New jobs are added through the day." : "Your answers point to roles outside a single school. Use the Live jobs links above."}</div>`);
+}
+let qTimer;
+document.addEventListener("input", e => {
+  const t = e.target.closest("textarea[data-q]"); if (!t) return;
+  A[t.dataset.q] = t.value; clearTimeout(qTimer);
+  qTimer = setTimeout(() => { store.set("answers", A); drawMatches(); const n = QLIST.filter(q => A[q[0]] && String(A[q[0]]).length).length; $("#c-plan").textContent = n ? n + "/" + QLIST.length : ""; $("#saved-note").textContent = "Saved " + new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }); }, 500);
+});
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-qid]");
+  if (b) {
+    const id = b.dataset.qid, v = b.dataset.v;
+    if (b.dataset.qt === "multi") { const s = new Set(A[id] || []); s.has(v) ? s.delete(v) : s.add(v); A[id] = [...s]; }
+    else A[id] = A[id] === v ? "" : v;
+    store.set("answers", A); drawQuiz(); return;
+  }
+  const oc = e.target.closest("[data-opencareer]");
+  if (oc) { e.preventDefault(); cGroup = "All"; cOpen = +oc.dataset.opencareer; go("ideas"); drawIdeas();
+    setTimeout(() => { const r = document.querySelector(`[data-c="${cOpen}"]`); if (r) r.scrollIntoView({ block: "start" }); }, 50); }
+});
+function exportAnswers() {
+  const lines = ["My answers – " + new Date().toLocaleDateString("en-GB"), ""];
+  QS.forEach(([sec, qs]) => { lines.push("== " + sec + " =="); qs.forEach(([id, type, q, opts]) => {
+    let a = A[id]; if (Array.isArray(a)) a = a.map(v => (opts.find(o => o[0] === v) || [, v])[1]).join(", ");
+    else if (opts && a) a = (opts.find(o => o[0] === a) || [, a])[1] || a;
+    lines.push(q, "  " + (a || "–"), ""); }); });
+  const blob = new Blob([lines.join("\n")], { type: "text/plain" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "my-answers.txt"; a.click();
+}
+
+function drawSites() {
   $("#sites-list").innerHTML = SITES.map(s => `<div class="row read" style="cursor:default">
     <div class="who" style="padding-left:8px"><a href="${s[2]}" target="_blank" rel="noopener">${esc(s[0])}</a></div>
     <div class="what">${esc(s[1])}</div></div>`).join("");
 }
-$("#plan-list").addEventListener("click", e => {
-  if (e.target.closest("a")) return;
-  const r = e.target.closest("[data-step]"); if (!r) return;
-  const i = +r.dataset.step; done.has(i) ? done.delete(i) : done.add(i);
-  store.set("done", [...done]); counts(); drawPlan();
-});
 
 $("#q").addEventListener("input", e => {
   f.q = e.target.value.trim().toLowerCase();
@@ -584,14 +761,16 @@ $("#q").addEventListener("input", e => {
   else go("jobs");
 });
 
-drawIdeas(); drawPlan(); counts();
+drawIdeas(); drawQuiz(); drawSites(); counts();
+$("#export").addEventListener("click", exportAnswers);
+$("#jump-matches").addEventListener("click", e => { e.preventDefault(); $("#matches").scrollIntoView({ behavior: "smooth" }); });
 Promise.all([
   fetch("data/jobs.json?t=" + Date.now(), { cache: "no-store" }).then(r => r.json()).catch(() => null),
   fetch("data/schools.json", { cache: "no-cache" }).then(r => r.json()).catch(() => [])
 ]).then(([j, s]) => {
   if (j) { JOBS = j.jobs; UPDATED = j.updated; }
   SCHOOLS = s;
-  counts(); drawJobs(); drawSchools();
+  counts(); drawJobs(); drawSchools(); drawMatches();
   const start = location.hash.slice(1);
   if (["saved", "schools", "ideas", "plan"].includes(start)) go(start);
 });

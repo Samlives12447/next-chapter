@@ -62,15 +62,20 @@ PRIMARY = re.compile(r"primary|infant|junior|first school|prep|nursery|c of e sc
 SCHOOLS = os.path.join(ROOT, "data", "schools.json")
 known = {re.sub(r"^the ", "", x["name"].lower()) for x in json.load(open(SCHOOLS))} if os.path.exists(SCHOOLS) else set()
 PHASE = json.load(open(os.path.join(ROOT, "data", "school_phase.json")))
-def primary_phase(j):
-    """True if the employer teaches primary-age children (DfE GIAS phase), else False."""
+SECONDARY = re.compile(r"secondary|high school|academy|grammar|upper school|school\b", re.I)
+def phase_of(j):
+    """'primary', 'secondary' or None (colleges, unknown), using the DfE GIAS register."""
     org = j.get("hiringOrganization") or {}
     g = PHASE.get(str(org.get("identifier") or ""))
+    name = org.get("name", "")
     if g:
         phase, low = g
-        return phase in ("Primary", "Middle deemed primary", "All-through", "Nursery") or (phase == "Not applicable" and low <= 7)
-    name = org.get("name", "")
-    return bool(PRIMARY.search(name)) or re.sub(r"^the ", "", name.strip().lower()) in known
+        if phase in ("Primary", "Middle deemed primary", "All-through", "Nursery") or (phase == "Not applicable" and low <= 7): return "primary"
+        if phase in ("Secondary", "Middle deemed secondary") or (phase == "Not applicable" and low <= 13): return "secondary"
+        return None
+    if PRIMARY.search(name) or re.sub(r"^the ", "", name.strip().lower()) in known: return "primary"
+    if re.search(r"college|university|trust", name, re.I): return None
+    return "secondary" if SECONDARY.search(name) else None
 out, seen = [], set()
 for j in cands:
     key = (j["title"].strip().lower(), (j.get("hiringOrganization") or {}).get("name", ""))
@@ -78,7 +83,8 @@ for j in cands:
     seen.add(key)
     ll = cache.get(pc(j))
     if not ll: continue
-    if kind(j) is None or not primary_phase(j): continue
+    ph = phase_of(j)
+    if kind(j) is None or ph is None: continue
     m = miles(HOME, ll)
     if m > RADIUS: continue
     org = j.get("hiringOrganization") or {}
@@ -90,7 +96,7 @@ for j in cands:
         "pay": tidy(str(pay))[:120], "posted": j.get("datePosted"),
         "closes": (j.get("validThrough") or "")[:16], "url": j["url"],
         "kind": kind(j),
-        "primary": True, "website": org.get("sameAs") or "",
+        "primary": ph == "primary", "website": org.get("sameAs") or "",
     })
 out.sort(key=lambda x: (x["posted"] or ""), reverse=True)
 json.dump({"updated": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="minutes"), "jobs": out},
