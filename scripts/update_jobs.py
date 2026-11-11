@@ -61,6 +61,16 @@ def tidy(p):
 PRIMARY = re.compile(r"primary|infant|junior|first school|prep|nursery|c of e school|cofe school|ce school", re.I)
 SCHOOLS = os.path.join(ROOT, "data", "schools.json")
 known = {re.sub(r"^the ", "", x["name"].lower()) for x in json.load(open(SCHOOLS))} if os.path.exists(SCHOOLS) else set()
+PHASE = json.load(open(os.path.join(ROOT, "data", "school_phase.json")))
+def primary_phase(j):
+    """True if the employer teaches primary-age children (DfE GIAS phase), else False."""
+    org = j.get("hiringOrganization") or {}
+    g = PHASE.get(str(org.get("identifier") or ""))
+    if g:
+        phase, low = g
+        return phase in ("Primary", "Middle deemed primary", "All-through", "Nursery") or (phase == "Not applicable" and low <= 7)
+    name = org.get("name", "")
+    return bool(PRIMARY.search(name)) or re.sub(r"^the ", "", name.strip().lower()) in known
 out, seen = [], set()
 for j in cands:
     key = (j["title"].strip().lower(), (j.get("hiringOrganization") or {}).get("name", ""))
@@ -68,7 +78,7 @@ for j in cands:
     seen.add(key)
     ll = cache.get(pc(j))
     if not ll: continue
-    if kind(j) is None: continue
+    if kind(j) is None or not primary_phase(j): continue
     m = miles(HOME, ll)
     if m > RADIUS: continue
     org = j.get("hiringOrganization") or {}
@@ -80,7 +90,7 @@ for j in cands:
         "pay": tidy(str(pay))[:120], "posted": j.get("datePosted"),
         "closes": (j.get("validThrough") or "")[:16], "url": j["url"],
         "kind": kind(j),
-        "primary": bool(PRIMARY.search(org.get("name", ""))) or re.sub(r"^the ", "", org.get("name", "").strip().lower()) in known, "website": org.get("sameAs") or "",
+        "primary": True, "website": org.get("sameAs") or "",
     })
 out.sort(key=lambda x: (x["posted"] or ""), reverse=True)
 json.dump({"updated": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="minutes"), "jobs": out},

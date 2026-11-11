@@ -76,6 +76,11 @@ dt{color:var(--sub)} dd{margin:0}
 .btn:hover{text-decoration:none;box-shadow:0 1px 2px #0002}
 .src{font-size:13px;color:var(--sub);word-break:break-all;margin-top:6px}
 
+.paybar{position:relative;height:10px;background:#F1ECE5;border-radius:5px;margin:4px 0 4px;max-width:520px}
+.paybar .range{position:absolute;top:0;bottom:0;background:var(--sage);border-radius:5px}
+.paybar .ups{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--accent)}
+.payscale{display:flex;justify-content:space-between;max-width:520px;font-size:12px;color:var(--faint)}
+.paykey{font-size:12px;color:var(--sub);margin:4px 0 14px}.paykey i{display:inline-block;width:2px;height:10px;background:var(--accent);margin-right:6px;vertical-align:-1px}
 .empty{padding:48px 16px;text-align:center;color:var(--sub)}
 .map{height:340px;border-bottom:1px solid var(--line);z-index:0}
 .map .leaflet-tile-pane{filter:saturate(.55) sepia(.1) brightness(1.03)}
@@ -114,7 +119,7 @@ nav.bottom{display:none}
 
 <header>
   <div class="brand"><b>Job</b> Search</div>
-  <label class="search"><input id="q" type="search" placeholder="Search jobs and schools" autocomplete="off"></label>
+  <label class="search"><input id="q" type="search" placeholder="Search jobs, schools and careers" autocomplete="off"></label>
   <div class="updated" id="updated"></div>
 </header>
 
@@ -130,7 +135,6 @@ nav.bottom{display:none}
   <main>
     <section id="v-jobs" class="view on">
       <div class="toolbar" id="jobs-bar">
-        <button class="chip" data-f="primary">Primary</button>
         <button class="chip" data-f="lead">Leadership</button>
         <button class="chip" data-m="5">Within 5 mi</button>
         <button class="chip" data-m="10">Within 10 mi</button>
@@ -143,7 +147,7 @@ nav.bottom{display:none}
         <span class="meta" id="jobs-meta"></span>
       </div>
       <div id="jobs-list"></div>
-      <div class="note">Full-time teaching and leadership posts within 20 miles, from DfE Teaching Vacancies. Updated five times a day. Independent and prep schools advertise mainly on <a href="https://www.tes.com/jobs/browse/primary/sussex" target="_blank" rel="noopener">Tes</a>.</div>
+      <div class="note">Full-time primary teaching and leadership posts within 20 miles, from DfE Teaching Vacancies. Secondary schools and colleges are excluded using the DfE schools register. Updated five times a day. Independent and prep schools advertise mainly on <a href="https://www.tes.com/jobs/browse/primary/sussex" target="_blank" rel="noopener">Tes</a>.</div>
     </section>
 
     <section id="v-schools" class="view">
@@ -162,8 +166,11 @@ nav.bottom{display:none}
     </section>
 
     <section id="v-ideas" class="view">
-      <div class="note">Roles that use primary teaching, subject leadership and NPQSL. Pay is approximate, 2026/27.</div>
+      <div class="toolbar" id="c-groups"></div>
+      <div class="note">25 roles open to an experienced primary teacher and leader. Pay is approximate for England outside London, from 2026/27 pay scales and recent adverts. Select a role for detail and sources.</div>
       <div id="ideas-list"></div>
+      <div class="toolbar"><b style="font-weight:500">What the qualifications open</b></div>
+      <div id="quals-list"></div>
     </section>
 
     <section id="v-plan" class="view">
@@ -189,22 +196,170 @@ nav.bottom{display:none}
 const HOME = [50.8619, -0.1110];
 const TV = "https://teaching-vacancies.service.gov.uk/jobs?location=BN1+9&radius=20&keyword=";
 
-const IDEAS = [
-  ["Assistant headteacher", "Senior leadership team. Leads a whole-school area such as curriculum, inclusion or teaching quality; usually teaches part time. NPQSL is the relevant qualification.", "£53,600 – £63,000", "assistant headteacher"],
-  ["Deputy headteacher", "Second in charge. Runs day-to-day operations and deputises for the head.", "£59,000 – £75,000", "deputy headteacher"],
-  ["Phase / key stage leader", "Leads a phase (EYFS, KS1, LKS2, UKS2).", "UPS + TLR", "phase leader"],
-  ["English / reading lead", "Whole-school responsibility for reading, phonics and English.", "UPS + TLR", "english lead"],
-  ["Maths lead", "Whole-school responsibility for maths curriculum and staff development.", "UPS + TLR", "maths lead"],
-  ["SENCO", "Coordinates SEND provision. NASENCO award required within three years of appointment.", "UPS + SEN allowance", "senco"],
-  ["Trust school improvement", "Works across a multi-academy trust's schools on curriculum and teaching. Local trusts: UBAT, Pioneer, GLF, Sussex Learning Trust, Bohunt.", "£60,000 – £85,000", "school improvement"],
-  ["Independent / prep school", "Smaller classes, longer holidays. Local: Brighton College Prep, Lancing Prep, Mowden, Windlesham, Cottesmore, Handcross Park.", "Independent scales", "prep"],
-  ["Early years leader", "Leads nursery or Reception, staff team and EYFS.", "£40,000 – £50,000", "early years leader"],
-  ["Special school teacher", "Small classes for pupils with SEND.", "MPS/UPS + SEN allowance", "special school"],
-  ["French / MFL teacher", "Primary MFL specialist or secondary French. Shortage subject at secondary.", "MPS/UPS", "french"],
-  ["French-system school", "French national curriculum taught in French, e.g. Lycée Français Charles de Gaulle, London.", "AEFE scale", "french"],
-  ["Initial teacher education", "Lecturer or professional tutor training primary teachers. Local: Brighton, Sussex, Chichester universities.", "£46,000 – £58,000", "lecturer"],
-  ["Examiner / marker", "KS2 test marking (Pearson, recruits from December) or exam board work. Remote, seasonal.", "Per script", "examiner"],
-  ["Curriculum / resources", "Curriculum and resource writing for publishers and EdTech (White Rose, Twinkl, Oak).", "£35,000 – £50,000", "curriculum"]
+const NCS = "https://nationalcareers.service.gov.uk/job-profiles/";
+const STPCD = ["Teachers' pay and conditions (DfE)", "https://www.gov.uk/government/publications/school-teachers-pay-and-conditions"];
+const UPS3 = 52835;
+
+// [name, group, payMin, payMax, payText, what, route, uses[], pattern, links[[label,url]], searchUrl]
+const CAREERS = [
+  ["Assistant headteacher", "School leadership", 53585, 70000, "£53,585 – £70,000",
+   "Member of the senior leadership team. Leads a whole-school area such as curriculum, assessment, inclusion or teaching quality. Usually keeps a reduced teaching timetable.",
+   "Experienced teacher with subject or phase leadership. NPQSL is the standard leadership qualification for this level.",
+   ["QTS", "NPQSL", "Subject leadership"], "School year, term-time with holidays.",
+   [["Headteacher and senior leader profile (National Careers Service)", NCS + "headteacher"], STPCD],
+   "https://teaching-vacancies.service.gov.uk/jobs?keyword=assistant+headteacher&location=BN1+9&radius=20"],
+  ["Deputy headteacher", "School leadership", 58000, 80000, "£58,000 – £80,000",
+   "Second in charge of the school. Runs day-to-day operations, often leads teaching and learning or pastoral systems, and deputises for the head.",
+   "Usually assistant head or senior leader experience. NPQSL, with NPQH often taken during the role.",
+   ["QTS", "NPQSL", "Subject leadership"], "School year.",
+   [["NAHT: leadership pay and support", "https://www.naht.org.uk/"], STPCD],
+   "https://teaching-vacancies.service.gov.uk/jobs?keyword=deputy+headteacher&location=BN1+9&radius=20"],
+  ["Primary headteacher", "School leadership", 60600, 100000, "£60,600 – £100,000 (by school size)",
+   "Leads the whole school: standards, staff, budget, safeguarding, governors and the community. Pay depends on the school's headteacher group (pupil numbers).",
+   "Deputy head experience is typical. NPQH (headship) recommended; NPQSL is the step before.",
+   ["QTS", "NPQSL", "Master's"], "School year, with significant holiday working.",
+   [["Headteacher profile (National Careers Service)", NCS + "headteacher"], ["NPQ courses and funding (DfE)", "https://www.gov.uk/guidance/national-professional-qualification-npq-courses"], STPCD],
+   "https://teaching-vacancies.service.gov.uk/jobs?keyword=headteacher&location=BN1+9&radius=20"],
+  ["Head of prep school / pre-prep (independent)", "School leadership", 55000, 110000, "£55,000 – £110,000",
+   "Leads a prep or pre-prep school or section in the independent sector. Smaller classes, longer holidays, more parent-facing.",
+   "Senior leadership experience in either sector. Independent schools set their own pay; NPQs are recognised.",
+   ["QTS", "NPQSL", "Subject leadership"], "Independent school year (usually longer holidays).",
+   [["IAPS: the prep schools association", "https://www.iaps.uk/"], ["Tes leadership jobs", "https://www.tes.com/jobs/browse/primary/sussex"]],
+   "https://www.tes.com/jobs/browse/primary/sussex"],
+  ["Executive headteacher / head of several schools", "School leadership", 80000, 120000, "£80,000 – £120,000",
+   "Leads two or more schools, usually within a trust or federation, each with its own head of school.",
+   "Successful headship first. NPQEL (executive leadership) is the relevant qualification.",
+   ["QTS", "NPQSL", "Master's"], "Year-round with school holidays partly free.",
+   [["Confederation of School Trusts", "https://cstuk.org.uk/"], ["NPQ courses (DfE)", "https://www.gov.uk/guidance/national-professional-qualification-npq-courses"]],
+   "https://teaching-vacancies.service.gov.uk/jobs?keyword=executive+headteacher&location=BN1+9&radius=20"],
+  ["Trust director of primary / education", "Across schools", 80000, 115000, "£80,000 – £115,000",
+   "Senior role in a multi-academy trust. Sets and checks the quality of education across all the trust's primary schools and line-manages heads.",
+   "Headship or trust improvement experience.",
+   ["QTS", "NPQSL", "Master's", "Subject leadership"], "Year-round, holidays per contract (often 30+ days).",
+   [["Confederation of School Trusts", "https://cstuk.org.uk/"], ["Tes leadership jobs", "https://www.tes.com/jobs/browse/leadership-management"]],
+   "https://www.tes.com/jobs/browse/leadership-management"],
+  ["Trust school improvement lead", "Across schools", 60000, 85000, "£60,000 – £85,000",
+   "Visits a trust's schools to review teaching, curriculum and outcomes, then coaches leaders and runs training. Often specialises (e.g. English, maths, early years).",
+   "Strong subject or senior leadership with evidence of impact. NPQSL common; NPQLL / NPQLPM for subject specialists.",
+   ["QTS", "NPQSL", "Master's", "Subject leadership"], "Year-round, mix of school visits and home working.",
+   [["School improvement adviser profile (National Careers Service)", NCS + "school-improvement-adviser"], ["Teaching school hubs (DfE)", "https://www.gov.uk/guidance/teaching-school-hubs"]],
+   "https://teaching-vacancies.service.gov.uk/jobs?keyword=school+improvement&location=BN1+9&radius=20"],
+  ["Local authority school improvement adviser", "Across schools", 50000, 70000, "£50,000 – £70,000 (Soulbury scale)",
+   "Works for a council supporting and challenging maintained schools, often in a subject or phase specialism. Paid on the Soulbury scale.",
+   "Senior or subject leadership plus experience supporting other schools.",
+   ["QTS", "NPQSL", "Subject leadership"], "Year-round local government contract.",
+   [["Education adviser profile (National Careers Service)", NCS + "education-adviser"], ["Soulbury pay 2025/26 (NEU)", "https://neu.org.uk/latest/library/soulbury-pay-offer-2025-26?_locale=en"], ["Brighton & Hove council jobs", "https://www.brighton-hove.gov.uk/jobs"]],
+   "https://www.brighton-hove.gov.uk/jobs"],
+  ["Virtual school head / adviser", "Across schools", 50000, 80000, "£50,000 – £80,000",
+   "Every council has a virtual school that oversees the education of children in care. Advisers work with schools, social workers and carers; the head leads the service.",
+   "Teaching and leadership background, especially SEND, inclusion or safeguarding.",
+   ["QTS", "NPQSL", "Inclusion"], "Year-round local government contract.",
+   [["National Association of Virtual School Heads", "https://navsh.org.uk/"], ["Statutory guidance: looked-after children (DfE)", "https://www.gov.uk/government/publications/promoting-the-education-of-looked-after-children"]],
+   "https://www.brighton-hove.gov.uk/jobs"],
+  ["His Majesty's Inspector (Ofsted)", "Inspection & policy", 82000, 87300, "about £82,000 – £87,300 (2026 adverts)",
+   "Leads school inspections nationally and writes reports. Home-based with travel, Civil Service grade 7. Ofsted also uses serving school leaders as part-time Ofsted Inspectors.",
+   "Senior leadership experience, typically headship or deputy headship. Recruitment rounds are advertised on Civil Service Jobs.",
+   ["QTS", "NPQSL", "Master's"], "Year-round, home-based with national travel. Civil Service pension.",
+   [["Ofsted inspector profile (National Careers Service)", NCS + "ofsted-inspector"], ["Ofsted recruitment", "https://www.gov.uk/government/organisations/ofsted/about/recruitment"], ["Civil Service Jobs", "https://www.civilservicejobs.service.gov.uk/"]],
+   "https://www.civilservicejobs.service.gov.uk/"],
+  ["Independent Schools Inspectorate inspector", "Inspection & policy", 70000, 75000, "about £70,000 – £75,000 (senior inspector adverts)",
+   "Inspects independent schools in England, including prep schools. Serving leaders can also inspect part-time on a contracted basis.",
+   "Senior leadership experience in either sector.",
+   ["QTS", "NPQSL"], "Year-round with travel; part-time option for serving leaders.",
+   [["ISI: work for us", "https://www.isi.net/about/work-for-us/"], ["Independent Schools Inspectorate", "https://www.isi.net/"]],
+   "https://www.isi.net/about/work-for-us/"],
+  ["Department for Education policy roles", "Inspection & policy", 45000, 68000, "£45,000 – £68,000 (SEO – grade 7)",
+   "Civil Service roles writing and delivering school policy: curriculum, SEND, teacher development, early years. Classroom experience is valued in many teams. Many posts are hybrid.",
+   "Apply through Civil Service Jobs using the success profile format (behaviours and experience examples).",
+   ["Master's", "Subject leadership"], "Year-round, hybrid working, 25–30 days' leave, Civil Service pension.",
+   [["Policy officer profile (Prospects)", "https://www.prospects.ac.uk/job-profiles/policy-officer"], ["DfE recruitment", "https://www.gov.uk/government/organisations/department-for-education/about/recruitment"], ["Civil Service Jobs", "https://www.civilservicejobs.service.gov.uk/"]],
+   "https://www.civilservicejobs.service.gov.uk/"],
+  ["Standards and Testing Agency (KS1/KS2 tests)", "Inspection & policy", 45000, 65000, "£45,000 – £65,000",
+   "The DfE agency that writes and runs primary national curriculum tests and assessments. Roles include test development and assessment research.",
+   "Primary teaching and assessment experience. Advertised on Civil Service Jobs.",
+   ["QTS", "Master's", "Subject leadership"], "Year-round, hybrid (Coventry-based agency).",
+   [["Standards and Testing Agency", "https://www.gov.uk/government/organisations/standards-and-testing-agency"], ["Civil Service Jobs", "https://www.civilservicejobs.service.gov.uk/"]],
+   "https://www.civilservicejobs.service.gov.uk/"],
+  ["Educational psychologist", "Specialist", 47700, 72000, "£47,700 – £72,000 qualified (Soulbury); trainees from £31,600",
+   "Assesses children's learning and wellbeing, advises schools and families, and contributes to EHC plans. Mostly employed by councils.",
+   "Long route: a psychology degree or conversion course (BPS Graduate Basis for Chartership), then a three-year doctorate in educational psychology. Training places in England are government-funded.",
+   ["Master's", "Inclusion"], "Year-round local authority work, some private practice.",
+   [["Educational psychologist profile (National Careers Service)", NCS + "educational-psychologist"], ["Educational psychologist profile (Prospects)", "https://www.prospects.ac.uk/job-profiles/educational-psychologist"], ["Association of Educational Psychologists", "https://www.aep.org.uk/"]],
+   "https://www.prospects.ac.uk/job-profiles/educational-psychologist"],
+  ["SENCO", "Specialist", 50000, 62000, "£50,000 – £62,000 (UPS + SEN allowance or leadership pay)",
+   "Leads special educational needs provision across a school: identification, support plans, EHC plans and staff training. Often part of the senior team.",
+   "QTS. New SENCOs must complete the NPQ for SENCOs (NPQSENCO, which replaced the NASENCO award in 2024) within three years.",
+   ["QTS", "NPQSL", "Inclusion"], "School year.",
+   [["SENCO profile (National Careers Service)", NCS + "special-educational-needs-coordinator"], ["SENCO profile (Prospects)", "https://www.prospects.ac.uk/job-profiles/special-educational-needs-coordinator-senco"], ["NPQ courses including NPQSENCO (DfE)", "https://www.gov.uk/guidance/national-professional-qualification-npq-courses"]],
+   "https://teaching-vacancies.service.gov.uk/jobs?keyword=senco&location=BN1+9&radius=20"],
+  ["Lead practitioner", "Specialist", 50000, 76000, "£50,000 – £76,000 (lead practitioner range)",
+   "Expert teacher with a separate pay range whose main job is improving teaching across a school or trust through modelling, coaching and training.",
+   "Strong classroom expertise and a track record of developing other teachers.",
+   ["QTS", "Subject leadership", "Master's"], "School year.",
+   [STPCD, ["Maths Hubs (NCETM)", "https://www.ncetm.org.uk/maths-hubs/"]],
+   "https://teaching-vacancies.service.gov.uk/jobs?keyword=lead+practitioner&location=BN1+9&radius=20"],
+  ["Senior lecturer in primary education", "Teacher education", 46000, 60000, "£46,000 – £60,000",
+   "Teaches and mentors trainee primary teachers at a university, visits them in schools, and often researches. Local: Brighton, Sussex, Chichester.",
+   "Significant primary experience. A master's is usually expected; a doctorate is helpful but not always required.",
+   ["QTS", "Master's", "Subject leadership"], "University year (term-time teaching, summer for research and admissions).",
+   [["Higher education lecturer profile (National Careers Service)", NCS + "higher-education-lecturer"], ["UCET: teacher education", "https://www.ucet.ac.uk/"], ["jobs.ac.uk education posts", "https://www.jobs.ac.uk/"]],
+   "https://www.jobs.ac.uk/"],
+  ["Initial teacher training (SCITT) programme lead", "Teacher education", 50000, 70000, "£50,000 – £70,000",
+   "Runs a school-based teacher training programme: recruitment, curriculum, mentor training and quality assurance.",
+   "Mentoring and leadership experience in primary schools.",
+   ["QTS", "NPQSL", "Master's"], "Year-round with school holidays partly free.",
+   [["Teaching school hubs (DfE)", "https://www.gov.uk/guidance/teaching-school-hubs"], ["UCET", "https://www.ucet.ac.uk/"]],
+   "https://teaching-vacancies.service.gov.uk/jobs?keyword=teacher+training&location=BN1+9&radius=20"],
+  ["NPQ and leadership development facilitator", "Teacher education", 45000, 60000, "£45,000 – £60,000 (or day rate alongside school work)",
+   "Delivers national professional qualifications and leadership programmes to teachers and leaders, online and in person.",
+   "Holds the relevant NPQ and has led in schools. Providers include Ambition Institute, Teach First and Best Practice Network.",
+   ["NPQSL", "Master's"], "Year-round or freelance; often remote.",
+   [["Ambition Institute", "https://www.ambition.org.uk/"], ["Best Practice Network", "https://www.bestpracticenet.co.uk/"], ["Teach First", "https://www.teachfirst.org.uk/"]],
+   "https://www.tes.com/jobs/browse/leadership-management"],
+  ["Education consultant", "Outside schools", 50000, 90000, "£350 – £650 a day; income varies",
+   "Self-employed or agency adviser selling training, reviews and curriculum support to schools and trusts, often in a specialism like reading.",
+   "A recognised specialism and a network of schools. Income depends on bookings.",
+   ["NPQSL", "Master's", "Subject leadership"], "Self-employed, flexible.",
+   [["Education consultant profile (National Careers Service)", NCS + "education-consultant"], ["Education consultant profile (Prospects)", "https://www.prospects.ac.uk/job-profiles/education-consultant"]],
+   "https://www.prospects.ac.uk/job-profiles/education-consultant"],
+  ["Curriculum lead at an education company", "Outside schools", 45000, 70000, "£45,000 – £70,000",
+   "Designs lessons, schemes of work and teacher resources for organisations such as Oak National Academy, White Rose Education and educational publishers.",
+   "Strong curriculum leadership and writing. A portfolio of curriculum work helps.",
+   ["QTS", "Subject leadership", "Master's"], "Year-round, often hybrid or remote.",
+   [["Oak National Academy: work with us", "https://www.thenational.academy/about-us/work-with-us"], ["White Rose Education", "https://whiteroseeducation.com/"]],
+   "https://www.linkedin.com/jobs/search/?keywords=primary%20curriculum"],
+  ["Assessment / exam board manager", "Outside schools", 45000, 60000, "£45,000 – £60,000",
+   "Develops and quality-assures tests and qualifications at an awarding body. Many start as part-time markers or examiners.",
+   "Assessment experience. Part-time marking is the usual way in.",
+   ["QTS", "Master's"], "Year-round, often hybrid.",
+   [["Examiner profile (National Careers Service)", NCS + "examiner"], ["Pearson: become an examiner or moderator", "https://qualifications.pearson.com/en/support/support-for-you/work-for-pearson/become-an-examiner-or-moderator.html"]],
+   "https://qualifications.pearson.com/en/support/support-for-you/work-for-pearson/become-an-examiner-or-moderator.html"],
+  ["Learning and development manager (any industry)", "Outside schools", 45000, 65000, "£45,000 – £65,000",
+   "Plans and runs staff training in companies, charities and the NHS. Teaching and coaching skills transfer directly.",
+   "Teaching plus some adult training experience. CIPD qualifications are common but not always required.",
+   ["Master's", "NPQSL"], "Year-round, usually hybrid, 25+ days' leave.",
+   [["Learning and development manager profile (National Careers Service)", NCS + "learning-and-development-manager"]],
+   "https://www.linkedin.com/jobs/search/?keywords=learning%20and%20development%20manager&location=Brighton"],
+  ["Instructional / learning designer", "Outside schools", 40000, 60000, "£40,000 – £60,000",
+   "Designs online courses and digital learning for universities, companies and EdTech firms.",
+   "Teaching experience plus digital course-building skills (tools such as Articulate are common).",
+   ["Master's"], "Year-round, often fully remote.",
+   [["Instructional designer profile (National Careers Service)", NCS + "instructional-designer"]],
+   "https://www.linkedin.com/jobs/search/?keywords=instructional%20designer&location=United%20Kingdom"],
+  ["International school leader (French-speaking countries)", "Abroad", 60000, 120000, "£60,000 – £120,000 equivalent, often with housing",
+   "Head of primary, deputy or head at British international schools. French-speaking locations include France, Switzerland, Belgium, Luxembourg and Monaco, where fluent French is a real advantage.",
+   "UK leadership experience. Recruitment mostly runs September to January for the following August.",
+   ["QTS", "NPQSL", "French"], "International school year.",
+   [["COBIS: British international schools", "https://www.cobis.org.uk/"], ["Council of International Schools", "https://www.cois.org/"], ["Tes international jobs", "https://www.tes.com/jobs/browse/international"]],
+   "https://www.tes.com/jobs/browse/international"]
+];
+
+const QUALS = [
+  ["QTS (qualified teacher status)", "Required to teach in maintained schools in England; recognised by academies, independent schools and British international schools. A requirement or advantage for most roles in schools, trusts, inspection and teacher education.", [["Teachers' pay and conditions (DfE)", "https://www.gov.uk/government/publications/school-teachers-pay-and-conditions"]]],
+  ["Master's degree in education", "The usual minimum for university lecturing. Valued for research, policy, assessment and consultancy roles, and counts towards doctoral study (e.g. EdD or educational psychology).", [["Higher education lecturer profile", "https://nationalcareers.service.gov.uk/job-profiles/higher-education-lecturer"]]],
+  ["NPQSL (senior leadership)", "The national qualification for assistant and deputy heads. Expected for senior leadership and trust improvement roles. Next steps: NPQH (headship) and NPQEL (executive leadership).", [["NPQ courses and funding (DfE)", "https://www.gov.uk/guidance/national-professional-qualification-npq-courses"]]],
+  ["Further NPQs", "NPQ for SENCOs (required for new SENCOs), NPQ in Leading Literacy, NPQ in Leading Primary Mathematics, NPQ in Early Years Leadership. Funding eligibility varies by year and school.", [["NPQ courses and funding (DfE)", "https://www.gov.uk/guidance/national-professional-qualification-npq-courses"]]],
+  ["Native French", "Advantage for primary MFL leadership, international schools in French-speaking countries, French-system schools and EU-facing roles.", [["COBIS", "https://www.cobis.org.uk/"], ["Tes international jobs", "https://www.tes.com/jobs/browse/international"]]]
 ];
 
 const PLAN = [
@@ -214,7 +369,7 @@ const PLAN = [
   ["Leadership personal statement", "Two pages: NPQSL, reading, maths and science leadership, evidence of impact.", ""],
   ["Referees", "Current head plus one other senior leader.", ""],
   ["Contact local trusts", "UBAT, Pioneer Academy, GLF, Sussex Learning Trust, Bohunt: CV and note re leadership posts from September.", ""],
-  ["Pearson KS2 marker application", "Recruitment usually opens in December.", "https://www.pearson.com/en-gb/schools/primary/key-stage-tests-markers.html"]
+  ["Pearson examiner / marker application", "KS2 marker recruitment usually opens in December.", "https://qualifications.pearson.com/en/support/support-for-you/work-for-pearson/become-an-examiner-or-moderator.html"]
 ];
 
 const SITES = [
@@ -278,7 +433,7 @@ function drawJobs() {
   }
   $("#jobs-list").innerHTML = list.map((j, i) => {
     const unread = !seen.has(j.url), left = daysLeft(j.closes);
-    const tags = (j.primary ? '<span class="tag p">Primary</span>' : "") + (j.kind === "lead" ? '<span class="tag l">Leadership</span>' : "");
+    const tags = (j.kind === "lead" ? '<span class="tag l">Leadership</span>' : "");
     return `<div class="row ${unread ? "unread" : "read"}" data-i="${i}">
       <button class="star ${saved.has(j.url) ? "on" : ""}" data-star="${esc(j.url)}" aria-label="Save">${saved.has(j.url) ? "★" : "☆"}</button>
       <div class="who">${esc(j.school)}</div>
@@ -293,7 +448,7 @@ function drawJobs() {
         <dt>Pay</dt><dd>${esc(j.pay) || "Not stated"}</dd>
         <dt>Posted</dt><dd>${long(j.posted)}</dd>
         <dt>Closes</dt><dd>${long(j.closes)}${j.closes && j.closes.length > 10 ? ", " + j.closes.slice(11, 16) : ""}</dd>
-        <dt>Type</dt><dd>${j.kind === "lead" ? "Leadership" : "Teaching"}${j.primary ? ", primary" : ""}</dd>
+        <dt>Type</dt><dd>${j.kind === "lead" ? "Leadership" : "Teaching"}</dd>
       </dl>
       <a class="btn fill" href="${esc(j.url)}" target="_blank" rel="noopener">Open advert</a>
       ${j.website ? `<a class="btn" href="${esc(j.website)}" target="_blank" rel="noopener">School website</a>` : ""}
@@ -362,13 +517,48 @@ $("#schools-bar").addEventListener("click", e => {
   drawSchools();
 });
 
-function drawIdeas() {
-  $("#ideas-list").innerHTML = IDEAS.map(i => `<div class="row read" style="cursor:default">
-    <div class="who" style="padding-left:8px;font-weight:500">${esc(i[0])}</div>
-    <div class="what">${esc(i[1])}</div>
-    <div class="when">${esc(i[2])} · <a href="${TV + i[3].replace(/ /g, "+")}" target="_blank" rel="noopener">Search</a></div>
-  </div>`).join("");
+let cGroup = "All", cOpen = null;
+const GROUPS = ["All", ...new Set(CAREERS.map(c => c[1]))];
+function payBar(lo, hi) {
+  const a = 40000, b = 120000, x = v => Math.max(0, Math.min(100, (v - a) / (b - a) * 100));
+  return `<div class="paybar"><div class="range" style="left:${x(lo)}%;width:${x(hi) - x(lo)}%"></div>
+    <div class="ups" style="left:${x(UPS3)}%"></div></div>
+    <div class="payscale"><span>£40k</span><span>£80k</span><span>£120k</span></div>
+    <div class="paykey"><i></i>Top of classroom scale (UPS3, 2026/27): £52,835</div>`;
 }
+function drawIdeas() {
+  $("#c-groups").innerHTML = GROUPS.map(g => `<button class="chip ${g === cGroup ? "on" : ""}" data-g="${esc(g)}">${esc(g)}</button>`).join("");
+  const list = CAREERS.map((c, i) => [c, i]).filter(([c]) => cGroup === "All" || c[1] === cGroup)
+    .filter(([c]) => !f.q || (c[0] + " " + c[5]).toLowerCase().includes(f.q));
+  $("#ideas-list").innerHTML = list.map(([c, i]) => `<div class="row read" data-c="${i}">
+      <div class="who" style="padding-left:8px;font-weight:500">${esc(c[0])}</div>
+      <div class="what"><span class="tag l">${esc(c[1])}</span>${esc(c[5])}</div>
+      <div class="when">${esc(c[4].split(" (")[0].split(";")[0])}</div>
+    </div>
+    <div class="detail ${cOpen === i ? "open" : ""}">
+      <h2>${esc(c[0])}</h2>
+      <div class="org">${esc(c[1])}</div>
+      ${payBar(c[2], c[3])}
+      <dl>
+        <dt>Pay</dt><dd>${esc(c[4])}</dd>
+        <dt>The role</dt><dd>${esc(c[5])}</dd>
+        <dt>Route in</dt><dd>${esc(c[6])}</dd>
+        <dt>Draws on</dt><dd>${c[7].map(u => `<span class="tag p">${esc(u)}</span>`).join("")}</dd>
+        <dt>Pattern</dt><dd>${esc(c[8])}</dd>
+        <dt>Read more</dt><dd>${c[9].map(l => `<a href="${l[1]}" target="_blank" rel="noopener">${esc(l[0])}</a>`).join("<br>")}</dd>
+      </dl>
+      <a class="btn fill" href="${c[10]}" target="_blank" rel="noopener">Look at live jobs</a>
+    </div>`).join("") || `<div class="empty">No options match.</div>`;
+  $("#quals-list").innerHTML = QUALS.map(q => `<div class="row read" style="cursor:default;align-items:flex-start;padding-top:10px;padding-bottom:10px">
+      <div class="who" style="padding-left:8px;font-weight:500;white-space:normal">${esc(q[0])}</div>
+      <div class="what" style="white-space:normal">${esc(q[1])}<br>${q[2].map(l => `<a href="${l[1]}" target="_blank" rel="noopener">${esc(l[0])}</a>`).join(" · ")}</div>
+    </div>`).join("");
+}
+document.addEventListener("click", e => {
+  const g = e.target.closest("[data-g]"); if (g) { cGroup = g.dataset.g; cOpen = null; drawIdeas(); return; }
+  if (e.target.closest("a")) return;
+  const r = e.target.closest("[data-c]"); if (r) { const i = +r.dataset.c; cOpen = cOpen === i ? null : i; drawIdeas(); }
+});
 function drawPlan() {
   $("#plan-list").innerHTML = PLAN.map((p, i) => `<div class="row ${done.has(i) ? "done read" : ""}" data-step="${i}">
     <div class="check" style="margin-left:8px">${done.has(i) ? "✓" : ""}</div>
@@ -390,6 +580,7 @@ $("#q").addEventListener("input", e => {
   f.q = e.target.value.trim().toLowerCase();
   if (view === "schools") drawSchools();
   else if (view === "jobs" || view === "saved") drawJobs();
+  else if (view === "ideas") drawIdeas();
   else go("jobs");
 });
 
