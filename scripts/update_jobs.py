@@ -46,6 +46,18 @@ for i in range(0, len(need), 100):
     time.sleep(0.3)
 json.dump(cache, open(CACHE, "w"))
 
+LEADCAT = re.compile(r"headteacher|head_of|sendco", re.I)
+LEADTITLE = re.compile(r"head|deputy|assistant head|phase|key stage|senco|sendco|inclusion|director|lead practitioner|leader", re.I)
+def kind(j):
+    c = str(j.get("occupationalCategory"))
+    if LEADCAT.search(c) or ("leadership" in c and LEADTITLE.search(j["title"])): return "lead"
+    if "leadership" in c: return None          # e.g. gardening/site "lead" roles
+    return "teach"
+def tidy(p):
+    p = re.sub(r"(\d),?(\d{3})\.00", r"\1,\2", p)
+    p = re.sub(r"\s*(Annually|per annum)?\s*\((Actual|FTE)\)", "", p, flags=re.I)
+    p = re.sub(r"\s+-\s+", " – ", p)
+    return re.sub(r"\s+", " ", p).strip(" .")
 PRIMARY = re.compile(r"primary|infant|junior|first school|prep|nursery|c of e school|cofe school|ce school", re.I)
 SCHOOLS = os.path.join(ROOT, "data", "schools.json")
 known = {re.sub(r"^the ", "", x["name"].lower()) for x in json.load(open(SCHOOLS))} if os.path.exists(SCHOOLS) else set()
@@ -56,6 +68,7 @@ for j in cands:
     seen.add(key)
     ll = cache.get(pc(j))
     if not ll: continue
+    if kind(j) is None: continue
     m = miles(HOME, ll)
     if m > RADIUS: continue
     org = j.get("hiringOrganization") or {}
@@ -64,9 +77,9 @@ for j in cands:
     out.append({
         "title": j["title"].strip(), "school": org.get("name", "").strip(), "town": addr.get("addressLocality") or "",
         "lat": round(ll[0], 4), "lon": round(ll[1], 4), "miles": round(m, 1),
-        "pay": re.sub(r"\s+", " ", str(pay)).strip()[:140], "posted": j.get("datePosted"),
+        "pay": tidy(str(pay))[:120], "posted": j.get("datePosted"),
         "closes": (j.get("validThrough") or "")[:16], "url": j["url"],
-        "kind": "lead" if re.search(r"leader|head|sendco", str(j.get("occupationalCategory")), re.I) else "teach",
+        "kind": kind(j),
         "primary": bool(PRIMARY.search(org.get("name", ""))) or re.sub(r"^the ", "", org.get("name", "").strip().lower()) in known, "website": org.get("sameAs") or "",
     })
 out.sort(key=lambda x: (x["posted"] or ""), reverse=True)
