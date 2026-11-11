@@ -135,6 +135,7 @@ nav.bottom{display:none}
     <button data-go="schools"><span>Schools</span><span class="count" id="c-schools"></span></button>
     <button data-go="ideas"><span>Career options</span></button>
     <button data-go="plan"><span>Questions</span><span class="count" id="c-plan"></span></button>
+    <button data-go="notify"><span>Notifications</span></button>
   </aside>
 
   <main>
@@ -150,6 +151,7 @@ nav.bottom{display:none}
           <option value="close">Closing date</option>
         </select>
         <span class="meta" id="jobs-meta"></span>
+        <button class="chip" data-go="notify" style="background:var(--accent);border-color:var(--accent);color:#fff">🔔 Get new-job notifications</button>
       </div>
       <div id="jobs-list"></div>
       <div class="note">Full-time teaching and leadership posts within 20 miles, from DfE Teaching Vacancies. Primary and secondary are separated using the DfE schools register; colleges are excluded. Updated five times a day. Independent and prep schools advertise mainly on <a href="https://www.tes.com/jobs/browse/primary/sussex" target="_blank" rel="noopener">Tes</a>.</div>
@@ -187,6 +189,24 @@ nav.bottom{display:none}
       <div class="toolbar"><button class="btn" id="export">Download my answers</button></div>
     </section>
 
+    <section id="v-notify" class="view">
+      <div class="toolbar"><b style="font-weight:500">Phone notifications for new jobs</b></div>
+      <div class="note">A notification is sent when a new full-time primary job within 20 miles appears. Checks run five times a day. Notifications use ntfy, a free app with no account needed.</div>
+      <div class="q"><label>1. Install the ntfy app</label>
+        <a class="btn" href="https://apps.apple.com/app/ntfy/id1625396347" target="_blank" rel="noopener">iPhone (App Store)</a>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=io.heckel.ntfy" target="_blank" rel="noopener">Android (Google Play)</a></div>
+      <div class="q"><label>2. Subscribe to the job feed</label>
+        <p style="margin:0 0 10px;color:var(--sub)">In the app, tap <b>+</b>, then paste this topic name and tap Subscribe.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+          <code id="topic" style="font-size:16px;background:#F1ECE5;padding:8px 12px;border-radius:8px">jobsearch-bn1-c40f55d3f8</code>
+          <button class="btn fill" id="copy-topic">Copy topic name</button>
+          <a class="btn" href="ntfy://ntfy.sh/jobsearch-bn1-c40f55d3f8">Open in ntfy</a>
+        </div></div>
+      <div class="q"><label>3. Check it works</label>
+        <button class="btn" id="test-ntfy">Send a test notification</button> <span class="meta" id="test-result"></span></div>
+      <div class="note">On a computer, notifications can also be received in the browser at <a href="https://ntfy.sh/jobsearch-bn1-c40f55d3f8" target="_blank" rel="noopener">ntfy.sh/jobsearch-bn1-c40f55d3f8</a>. To stop them, unsubscribe in the app.</div>
+    </section>
+
     <footer>Teaching Vacancies data under the Open Government Licence v3. Map © OpenStreetMap contributors.</footer>
   </main>
 </div>
@@ -197,6 +217,7 @@ nav.bottom{display:none}
   <button data-go="schools">Schools</button>
   <button data-go="ideas">Options</button>
   <button data-go="plan">Questions</button>
+  <button data-go="notify">Alerts</button>
 </nav>
 
 <script>
@@ -761,6 +782,18 @@ $("#q").addEventListener("input", e => {
   else go("jobs");
 });
 
+
+const TOPIC = "jobsearch-bn1-c40f55d3f8";
+$("#copy-topic").addEventListener("click", async e => {
+  try { await navigator.clipboard.writeText(TOPIC); e.target.textContent = "Copied"; }
+  catch (err) { const r = document.createRange(); r.selectNode($("#topic")); getSelection().removeAllRanges(); getSelection().addRange(r); e.target.textContent = "Selected – copy it"; }
+});
+$("#test-ntfy").addEventListener("click", () => {
+  $("#test-result").textContent = "Sending…";
+  fetch("https://ntfy.sh/", { method: "POST", body: JSON.stringify({ topic: TOPIC, title: "Test notification", message: "New job notifications are set up.", tags: ["school"] }) })
+    .then(r => $("#test-result").textContent = r.ok ? "Sent. It should arrive in a few seconds." : "Could not send (" + r.status + ").")
+    .catch(() => $("#test-result").textContent = "Could not send. Check the connection.");
+});
 drawIdeas(); drawQuiz(); drawSites(); counts();
 $("#export").addEventListener("click", exportAnswers);
 $("#jump-matches").addEventListener("click", e => { e.preventDefault(); $("#matches").scrollIntoView({ behavior: "smooth" }); });
@@ -772,7 +805,7 @@ Promise.all([
   SCHOOLS = s;
   counts(); drawJobs(); drawSchools(); drawMatches();
   const start = location.hash.slice(1);
-  if (["saved", "schools", "ideas", "plan"].includes(start)) go(start);
+  if (["saved", "schools", "ideas", "plan", "notify"].includes(start)) go(start);
 });
 </script>
 </body>

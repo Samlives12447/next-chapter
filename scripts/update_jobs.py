@@ -76,6 +76,11 @@ def phase_of(j):
     if PRIMARY.search(name) or re.sub(r"^the ", "", name.strip().lower()) in known: return "primary"
     if re.search(r"college|university|trust", name, re.I): return None
     return "secondary" if SECONDARY.search(name) else None
+JOBS_FILE = os.path.join(ROOT, "data", "jobs.json")
+try:
+    OLD = {j["url"] for j in json.load(open(JOBS_FILE))["jobs"]}
+except Exception:
+    OLD = None
 out, seen = [], set()
 for j in cands:
     key = (j["title"].strip().lower(), (j.get("hiringOrganization") or {}).get("name", ""))
@@ -100,5 +105,23 @@ for j in cands:
     })
 out.sort(key=lambda x: (x["posted"] or ""), reverse=True)
 json.dump({"updated": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="minutes"), "jobs": out},
-          open(os.path.join(ROOT, "data", "jobs.json"), "w"), indent=0, ensure_ascii=False)
+          open(JOBS_FILE, "w"), indent=0, ensure_ascii=False)
 print("kept", len(out))
+
+# ---- phone notifications (ntfy) for new primary jobs; only from GitHub Actions ----
+NTFY_TOPIC = "jobsearch-bn1-c40f55d3f8"
+def notify(title, body, click=None):
+    msg = {"topic": NTFY_TOPIC, "title": title, "message": body, "tags": ["school"]}
+    if click: msg["click"] = click
+    req = urllib.request.Request("https://ntfy.sh/", data=json.dumps(msg).encode(), headers={"Content-Type": "application/json"})
+    try: urllib.request.urlopen(req, timeout=20)
+    except Exception as e: print("ntfy failed", e)
+if OLD is not None and os.environ.get("GITHUB_ACTIONS"):
+    new = [j for j in out if j["primary"] and j["url"] not in OLD]
+    if len(new) > 3:
+        notify(f"{len(new)} new primary jobs", "; ".join(f"{j['title']} – {j['school']}" for j in new[:6]),
+               "https://samlives12447.github.io/next-chapter/")
+    else:
+        for j in new:
+            notify("New job: " + j["title"], f"{j['school']}, {j['town']} · {j['miles']} mi · closes {j['closes'][:10]}", j["url"])
+    print("notified", len(new))
