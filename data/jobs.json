@@ -1,6 +1,36 @@
 {
-"updated": "2026-11-11T23:28+00:00",
+"updated": "2026-11-12T13:46+00:00",
 "jobs": [
+{
+"title": "Teacher of MFL",
+"school": "Tanbridge House School",
+"town": "Horsham",
+"lat": 51.0651,
+"lon": -0.3516,
+"miles": 17.5,
+"pay": "",
+"posted": "2026-11-09",
+"closes": "2026-11-23T09:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-mfl-tanbridge-house-school-horsham-west-sussex",
+"kind": "teach",
+"primary": false,
+"website": "http://www.tanbridge-house-sch.co.uk"
+},
+{
+"title": "Maths Teacher",
+"school": "The Sir Robert Woodard Academy",
+"town": "Sompting",
+"lat": 50.8346,
+"lon": -0.3312,
+"miles": 9.8,
+"pay": "£34,069 – £52,835",
+"posted": "2026-11-09",
+"closes": "2026-11-25T23:59",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/maths-teacher-a55d71d1-f781-4542-b938-24dd3950747c",
+"kind": "teach",
+"primary": false,
+"website": "http://www.srwa.woodard.co.uk"
+},
 {
 "title": "Teacher of Science",
 "school": "The Littlehampton Academy",
@@ -15,6 +45,21 @@
 "kind": "teach",
 "primary": false,
 "website": "http://www.tla.woodard.co.uk/"
+},
+{
+"title": "Year 5 Teacher",
+"school": "City Academy Whitehawk",
+"town": "Brighton",
+"lat": 50.8254,
+"lon": -0.1074,
+"miles": 2.5,
+"pay": "M1 £34,069 to M6 £46,940",
+"posted": "2026-11-06",
+"closes": "2026-12-03T09:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/year-5-teacher-city-academy-whitehawk",
+"kind": "teach",
+"primary": true,
+"website": "http://www.caw.brighton-hove.sch.uk"
 },
 {
 "title": "Temporary Teacher of Maths",
@@ -47,21 +92,6 @@
 "website": "https://public.dorothy-stringer.co.uk/ds/Pages/Home.aspx"
 },
 {
-"title": "Teacher of Maths - plus potential TLR as Asst SENCO or Director of Year",
-"school": "Seahaven Academy",
-"town": "Newhaven",
-"lat": 50.7871,
-"lon": 0.0376,
-"miles": 8.3,
-"pay": "£36,400 – £53,040 Potential TLR for the right candidate – £3,596",
-"posted": "2026-10-26",
-"closes": "2026-11-15T23:59",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-maths-plus-potential-tlr-as-asst-senco-or-director-of-year",
-"kind": "teach",
-"primary": false,
-"website": "http://www.seahavenacademy.org.uk/"
-},
-{
 "title": "Teacher of English - plus potential TLR as Asst SENCO or Director of Year",
 "school": "Seahaven Academy",
 "town": "Newhaven",
@@ -77,6 +107,21 @@
 "website": "http://www.seahavenacademy.org.uk/"
 },
 {
+"title": "Teacher of Maths - plus potential TLR as Asst SENCO or Director of Year",
+"school": "Seahaven Academy",
+"town": "Newhaven",
+"lat": 50.7871,
+"lon": 0.0376,
+"miles": 8.3,
+"pay": "£36,400 – £53,040 Potential TLR for the right candidate – £3,596",
+"posted": "2026-10-26",
+"closes": "2026-11-15T23:59",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-maths-plus-potential-tlr-as-asst-senco-or-director-of-year",
+"kind": "teach",
+"primary": false,
+"website": "http://www.seahavenacademy.org.uk/"
+},
+{
 "title": "Teacher of Maths",
 "school": "Holy Trinity CofE Secondary School, Crawley",
 "town": "Crawley",
@@ -85,8 +130,8 @@
 "miles": 17.4,
 "pay": "",
 "posted": "2026-10-16",
-"closes": "2026-11-16T09:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-maths-715173fd-fa96-4d05-b2a6-7d3d2ceb0099",
+"closes": "2026-12-11T09:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-maths-eafa0e7c-078b-4363-a465-ae97c14561dd",
 "kind": "teach",
 "primary": false,
 "website": "https://www.holytrinitycrawley.org.uk/"
