@@ -1,6 +1,21 @@
 {
-"updated": "2026-11-12T13:46+00:00",
+"updated": "2026-11-12T22:45+00:00",
 "jobs": [
+{
+"title": "Class Teacher",
+"school": "Forge Wood Primary School",
+"town": "Crawley",
+"lat": 51.1366,
+"lon": -0.1534,
+"miles": 19.1,
+"pay": "GLF Main Pay Range – up to Point 6 (£48,479)",
+"posted": "2026-11-10",
+"closes": "2026-11-29T23:59",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/class-teacher-7590b78a-5d76-4531-95d9-5faeae26255d",
+"kind": "teach",
+"primary": true,
+"website": "http://www.forgewoodschool.org"
+},
 {
 "title": "Teacher of MFL",
 "school": "Tanbridge House School",
@@ -30,21 +45,6 @@
 "kind": "teach",
 "primary": false,
 "website": "http://www.srwa.woodard.co.uk"
-},
-{
-"title": "Teacher of Science",
-"school": "The Littlehampton Academy",
-"town": "Littlehampton",
-"lat": 50.8148,
-"lon": -0.5353,
-"miles": 18.8,
-"pay": "£34,069 – £52,835 Salary is dependant of experince M1-UP3",
-"posted": "2026-11-09",
-"closes": "2026-12-01T12:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-science-ca830b38-b974-4812-b09e-8381d859fb35",
-"kind": "teach",
-"primary": false,
-"website": "http://www.tla.woodard.co.uk/"
 },
 {
 "title": "Year 5 Teacher",
