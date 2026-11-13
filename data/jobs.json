@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-13T13:07+00:00",
+"updated": "2026-11-13T20:30+00:00",
 "jobs": [
 {
 "title": "Class Teacher",
@@ -30,21 +30,6 @@
 "kind": "teach",
 "primary": false,
 "website": "http://www.tanbridge-house-sch.co.uk"
-},
-{
-"title": "Maths Teacher",
-"school": "The Sir Robert Woodard Academy",
-"town": "Sompting",
-"lat": 50.8346,
-"lon": -0.3312,
-"miles": 9.8,
-"pay": "£34,069 – £52,835",
-"posted": "2026-11-09",
-"closes": "2026-11-25T23:59",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/maths-teacher-a55d71d1-f781-4542-b938-24dd3950747c",
-"kind": "teach",
-"primary": false,
-"website": "http://www.srwa.woodard.co.uk"
 },
 {
 "title": "Year 5 Teacher",
