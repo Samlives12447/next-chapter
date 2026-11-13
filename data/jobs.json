@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-12T22:45+00:00",
+"updated": "2026-11-13T13:07+00:00",
 "jobs": [
 {
 "title": "Class Teacher",
@@ -75,21 +75,6 @@
 "kind": "teach",
 "primary": false,
 "website": "http://www.hazelwick.org"
-},
-{
-"title": "Teacher of English – Fixed Term Contract until 31 August 2027",
-"school": "Dorothy Stringer School",
-"town": "Brighton",
-"lat": 50.8489,
-"lon": -0.1434,
-"miles": 1.7,
-"pay": "",
-"posted": "2026-11-04",
-"closes": "2026-11-13T12:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-fixed-term-contract-until-31-august-2027",
-"kind": "teach",
-"primary": false,
-"website": "https://public.dorothy-stringer.co.uk/ds/Pages/Home.aspx"
 },
 {
 "title": "Teacher of English - plus potential TLR as Asst SENCO or Director of Year",
