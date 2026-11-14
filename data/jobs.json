@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-13T20:30+00:00",
+"updated": "2026-11-14T01:28+00:00",
 "jobs": [
 {
 "title": "Class Teacher",
@@ -62,21 +62,6 @@
 "website": "http://www.hazelwick.org"
 },
 {
-"title": "Teacher of English - plus potential TLR as Asst SENCO or Director of Year",
-"school": "Seahaven Academy",
-"town": "Newhaven",
-"lat": 50.7871,
-"lon": 0.0376,
-"miles": 8.3,
-"pay": "£36,400 – £53,040 Potential TLR for the right candidate – £3,596",
-"posted": "2026-10-26",
-"closes": "2026-11-15T23:59",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-plus-potential-tlr-as-asst-senco-or-director-of-year",
-"kind": "teach",
-"primary": false,
-"website": "http://www.seahavenacademy.org.uk/"
-},
-{
 "title": "Teacher of Maths - plus potential TLR as Asst SENCO or Director of Year",
 "school": "Seahaven Academy",
 "town": "Newhaven",
@@ -87,6 +72,21 @@
 "posted": "2026-10-26",
 "closes": "2026-11-15T23:59",
 "url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-maths-plus-potential-tlr-as-asst-senco-or-director-of-year",
+"kind": "teach",
+"primary": false,
+"website": "http://www.seahavenacademy.org.uk/"
+},
+{
+"title": "Teacher of English - plus potential TLR as Asst SENCO or Director of Year",
+"school": "Seahaven Academy",
+"town": "Newhaven",
+"lat": 50.7871,
+"lon": 0.0376,
+"miles": 8.3,
+"pay": "£36,400 – £53,040 Potential TLR for the right candidate – £3,596",
+"posted": "2026-10-26",
+"closes": "2026-11-15T23:59",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-plus-potential-tlr-as-asst-senco-or-director-of-year",
 "kind": "teach",
 "primary": false,
 "website": "http://www.seahavenacademy.org.uk/"
