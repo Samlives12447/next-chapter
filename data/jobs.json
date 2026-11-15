@@ -1,6 +1,21 @@
 {
-"updated": "2026-11-14T18:45+00:00",
+"updated": "2026-11-15T01:03+00:00",
 "jobs": [
+{
+"title": "Headteacher",
+"school": "St. Mark's CofE Primary School",
+"town": "Haywards Heath",
+"lat": 51.0411,
+"lon": -0.1771,
+"miles": 12.7,
+"pay": "",
+"posted": "2026-11-15",
+"closes": "2027-01-20T12:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/headteacher-de9d46fc-caa9-415e-a23b-4c0623f212fa",
+"kind": "lead",
+"primary": true,
+"website": "http://www.st-marks.w-sussex.sch.uk"
+},
 {
 "title": "Class Teacher",
 "school": "Forge Wood Primary School",
