@@ -1,6 +1,21 @@
 {
-"updated": "2026-11-16T01:02+00:00",
+"updated": "2026-11-16T13:39+00:00",
 "jobs": [
+{
+"title": "SEND Class Teacher",
+"school": "Moulsecoomb Primary School",
+"town": "Brighton",
+"lat": 50.8495,
+"lon": -0.1107,
+"miles": 0.9,
+"pay": "National Teachers Main & Upper Payscales plus SEND Allowance",
+"posted": "2026-11-16",
+"closes": "2026-12-06T23:59",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/send-class-teacher-moulsecoomb-primary-school",
+"kind": "teach",
+"primary": true,
+"website": "https://moulsecoomb.brighton-hove.sch.uk/brighton-hove/primary/moulsecoomb"
+},
 {
 "title": "Headteacher",
 "school": "St. Mark's CofE Primary School",
@@ -32,21 +47,6 @@
 "website": "http://www.forgewoodschool.org"
 },
 {
-"title": "Teacher of MFL",
-"school": "Tanbridge House School",
-"town": "Horsham",
-"lat": 51.0651,
-"lon": -0.3516,
-"miles": 17.5,
-"pay": "",
-"posted": "2026-11-09",
-"closes": "2026-11-23T09:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-mfl-tanbridge-house-school-horsham-west-sussex",
-"kind": "teach",
-"primary": false,
-"website": "http://www.tanbridge-house-sch.co.uk"
-},
-{
 "title": "Teacher of Science",
 "school": "The Littlehampton Academy",
 "town": "Littlehampton",
@@ -62,6 +62,36 @@
 "website": "http://www.tla.woodard.co.uk/"
 },
 {
+"title": "Maths Teacher",
+"school": "The Sir Robert Woodard Academy",
+"town": "Sompting",
+"lat": 50.8346,
+"lon": -0.3312,
+"miles": 9.8,
+"pay": "£34,069 – £52,835",
+"posted": "2026-11-09",
+"closes": "2026-11-25T23:59",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/maths-teacher-a55d71d1-f781-4542-b938-24dd3950747c",
+"kind": "teach",
+"primary": false,
+"website": "http://www.srwa.woodard.co.uk"
+},
+{
+"title": "Teacher of MFL",
+"school": "Tanbridge House School",
+"town": "Horsham",
+"lat": 51.0651,
+"lon": -0.3516,
+"miles": 17.5,
+"pay": "",
+"posted": "2026-11-09",
+"closes": "2026-11-23T09:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-mfl-tanbridge-house-school-horsham-west-sussex",
+"kind": "teach",
+"primary": false,
+"website": "http://www.tanbridge-house-sch.co.uk"
+},
+{
 "title": "Year 5 Teacher",
 "school": "City Academy Whitehawk",
 "town": "Brighton",
@@ -75,21 +105,6 @@
 "kind": "teach",
 "primary": true,
 "website": "http://www.caw.brighton-hove.sch.uk"
-},
-{
-"title": "Temporary Teacher of Maths",
-"school": "Hazelwick School",
-"town": "Crawley",
-"lat": 51.1253,
-"lon": -0.1664,
-"miles": 18.4,
-"pay": "£34,398 – £52,490 including Fringe Area Allowance",
-"posted": "2026-11-05",
-"closes": "2026-11-16T09:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/temporary-teacher-of-maths-0aef0263-7c14-4c40-93ef-b4136684e85d",
-"kind": "teach",
-"primary": false,
-"website": "http://www.hazelwick.org"
 },
 {
 "title": "Teacher of Maths",
