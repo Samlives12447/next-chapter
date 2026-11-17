@@ -1,6 +1,51 @@
 {
-"updated": "2026-11-17T14:25+00:00",
+"updated": "2026-11-17T23:51+00:00",
 "jobs": [
+{
+"title": "Headteacher",
+"school": "St. Mark's CofE Primary School",
+"town": "Haywards Heath",
+"lat": 51.0411,
+"lon": -0.1771,
+"miles": 12.7,
+"pay": "",
+"posted": "2026-11-15",
+"closes": "2027-01-20T12:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/headteacher-de9d46fc-caa9-415e-a23b-4c0623f212fa",
+"kind": "lead",
+"primary": true,
+"website": "http://www.st-marks.w-sussex.sch.uk"
+},
+{
+"title": "Class Teacher",
+"school": "Forge Wood Primary School",
+"town": "Crawley",
+"lat": 51.1366,
+"lon": -0.1534,
+"miles": 19.1,
+"pay": "GLF Main Pay Range – up to Point 6 (£48,479)",
+"posted": "2026-11-10",
+"closes": "2026-11-29T23:59",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/class-teacher-7590b78a-5d76-4531-95d9-5faeae26255d",
+"kind": "teach",
+"primary": true,
+"website": "http://www.forgewoodschool.org"
+},
+{
+"title": "Teacher of Science",
+"school": "The Littlehampton Academy",
+"town": "Littlehampton",
+"lat": 50.8148,
+"lon": -0.5353,
+"miles": 18.8,
+"pay": "£34,069 – £52,835 Salary is dependant of experince M1-UP3",
+"posted": "2026-11-09",
+"closes": "2026-12-01T12:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-science-ca830b38-b974-4812-b09e-8381d859fb35",
+"kind": "teach",
+"primary": false,
+"website": "http://www.tla.woodard.co.uk/"
+},
 {
 "title": "Maths Teacher",
 "school": "The Sir Robert Woodard Academy",
@@ -17,19 +62,19 @@
 "website": "http://www.srwa.woodard.co.uk"
 },
 {
-"title": "Teacher of Science",
-"school": "The Littlehampton Academy",
-"town": "Littlehampton",
-"lat": 50.8148,
-"lon": -0.5353,
-"miles": 18.8,
-"pay": "£34,069 – £52,835 Salary is dependant of experince M1-UP3",
+"title": "Teacher of MFL",
+"school": "Tanbridge House School",
+"town": "Horsham",
+"lat": 51.0651,
+"lon": -0.3516,
+"miles": 17.5,
+"pay": "",
 "posted": "2026-11-09",
-"closes": "2026-12-01T12:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-science-ca830b38-b974-4812-b09e-8381d859fb35",
+"closes": "2026-11-23T09:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-mfl-tanbridge-house-school-horsham-west-sussex",
 "kind": "teach",
 "primary": false,
-"website": "http://www.tla.woodard.co.uk/"
+"website": "http://www.tanbridge-house-sch.co.uk"
 },
 {
 "title": "Year 5 Teacher",
@@ -62,21 +107,6 @@
 "website": "https://www.holytrinitycrawley.org.uk/"
 },
 {
-"title": "Teacher of English",
-"school": "Hailsham Academy",
-"town": "Hailsham",
-"lat": 50.8663,
-"lon": 0.2559,
-"miles": 16.0,
-"pay": "£32,916 – £51,047",
-"posted": "2026-10-08",
-"closes": "2026-12-01T08:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-cf13bfd8-3a9a-4863-84da-37b3e850c79b",
-"kind": "teach",
-"primary": true,
-"website": "http://www.hailsham-academy.org"
-},
-{
 "title": "Second in Maths",
 "school": "Brighton Aldridge Community Academy",
 "town": "Brighton",
@@ -92,6 +122,21 @@
 "website": "https://www.baca-uk.org.uk"
 },
 {
+"title": "Teacher of English",
+"school": "Hailsham Academy",
+"town": "Hailsham",
+"lat": 50.8663,
+"lon": 0.2559,
+"miles": 16.0,
+"pay": "£32,916 – £51,047",
+"posted": "2026-10-08",
+"closes": "2026-12-01T08:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-cf13bfd8-3a9a-4863-84da-37b3e850c79b",
+"kind": "teach",
+"primary": true,
+"website": "http://www.hailsham-academy.org"
+},
+{
 "title": "Headteacher",
 "school": "Pound Hill Infant Academy",
 "town": "Crawley",
@@ -105,6 +150,21 @@
 "kind": "lead",
 "primary": true,
 "website": "http://www.poundhillinfantacademy.org.uk"
+},
+{
+"title": "Teacher of English, Brighton - ECTs welcome to apply",
+"school": "Patcham High School",
+"town": "Brighton",
+"lat": 50.8622,
+"lon": -0.1439,
+"miles": 1.4,
+"pay": "",
+"posted": "2026-09-18",
+"closes": "2026-11-30T12:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-brighton-ects-welcome-to-apply",
+"kind": "teach",
+"primary": false,
+"website": "https://www.patchamhigh.brighton-hove.sch.uk/"
 },
 {
 "title": "Class Teacher (Bank Staff)",
