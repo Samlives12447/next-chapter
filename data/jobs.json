@@ -1,21 +1,6 @@
 {
-"updated": "2026-11-18T23:25+00:00",
+"updated": "2026-11-19T14:27+00:00",
 "jobs": [
-{
-"title": "Headteacher",
-"school": "Holy Trinity CofE Secondary School, Crawley",
-"town": "Crawley",
-"lat": 51.1062,
-"lon": -0.2084,
-"miles": 17.4,
-"pay": "",
-"posted": "2026-11-18",
-"closes": "2026-12-30T12:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/headteacher-holy-trinity-cofe-secondary-school-crawley",
-"kind": "lead",
-"primary": false,
-"website": "https://www.holytrinitycrawley.org.uk/"
-},
 {
 "title": "Headteacher",
 "school": "St. Mark's CofE Primary School",
@@ -30,6 +15,36 @@
 "kind": "lead",
 "primary": true,
 "website": "http://www.st-marks.w-sussex.sch.uk"
+},
+{
+"title": "Teacher of Design Technology",
+"school": "Ifield Community College",
+"town": "Crawley",
+"lat": 51.1177,
+"lon": -0.2099,
+"miles": 18.2,
+"pay": "£35,602 – £54,328",
+"posted": "2026-11-10",
+"closes": "2026-12-04T12:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-design-technology-ifield-community-college-crawley-west-sussex",
+"kind": "teach",
+"primary": false,
+"website": "https://ifieldcc.org.uk"
+},
+{
+"title": "SEND Teacher",
+"school": "Ifield Community College",
+"town": "Crawley",
+"lat": 51.1177,
+"lon": -0.2099,
+"miles": 18.2,
+"pay": "£35,602 – £54,328",
+"posted": "2026-11-10",
+"closes": "2026-12-04T12:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/send-teacher-ifield-community-college",
+"kind": "teach",
+"primary": false,
+"website": "https://ifieldcc.org.uk"
 },
 {
 "title": "Class Teacher",
@@ -77,36 +92,6 @@
 "website": "http://www.tanbridge-house-sch.co.uk"
 },
 {
-"title": "Maths Teacher",
-"school": "The Sir Robert Woodard Academy",
-"town": "Sompting",
-"lat": 50.8346,
-"lon": -0.3312,
-"miles": 9.8,
-"pay": "£34,069 – £52,835",
-"posted": "2026-11-09",
-"closes": "2026-11-25T23:59",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/maths-teacher-a55d71d1-f781-4542-b938-24dd3950747c",
-"kind": "teach",
-"primary": false,
-"website": "http://www.srwa.woodard.co.uk"
-},
-{
-"title": "Year 5 Teacher",
-"school": "City Academy Whitehawk",
-"town": "Brighton",
-"lat": 50.8254,
-"lon": -0.1074,
-"miles": 2.5,
-"pay": "M1 £34,069 to M6 £46,940",
-"posted": "2026-11-06",
-"closes": "2026-12-03T09:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/year-5-teacher-city-academy-whitehawk",
-"kind": "teach",
-"primary": true,
-"website": "http://www.caw.brighton-hove.sch.uk"
-},
-{
 "title": "Teacher of Maths",
 "school": "Holy Trinity CofE Secondary School, Crawley",
 "town": "Crawley",
@@ -122,21 +107,6 @@
 "website": "https://www.holytrinitycrawley.org.uk/"
 },
 {
-"title": "Second in Maths",
-"school": "Brighton Aldridge Community Academy",
-"town": "Brighton",
-"lat": 50.858,
-"lon": -0.0912,
-"miles": 0.9,
-"pay": "MPS/UPS + TLR2c",
-"posted": "2026-10-08",
-"closes": "2026-11-29T00:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/second-in-maths-brighton-aldridge-community-academy",
-"kind": "teach",
-"primary": false,
-"website": "https://www.baca-uk.org.uk"
-},
-{
 "title": "Teacher of English",
 "school": "Hailsham Academy",
 "town": "Hailsham",
@@ -150,6 +120,21 @@
 "kind": "teach",
 "primary": true,
 "website": "http://www.hailsham-academy.org"
+},
+{
+"title": "Second in Maths",
+"school": "Brighton Aldridge Community Academy",
+"town": "Brighton",
+"lat": 50.858,
+"lon": -0.0912,
+"miles": 0.9,
+"pay": "MPS/UPS + TLR2c",
+"posted": "2026-10-08",
+"closes": "2026-11-29T00:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/second-in-maths-brighton-aldridge-community-academy",
+"kind": "teach",
+"primary": false,
+"website": "https://www.baca-uk.org.uk"
 },
 {
 "title": "Headteacher",
