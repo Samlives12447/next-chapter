@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-20T14:01+00:00",
+"updated": "2026-11-20T23:06+00:00",
 "jobs": [
 {
 "title": "Teacher of KS3 / KS4 Computing",
@@ -47,21 +47,6 @@
 "website": "http://www.st-marks.w-sussex.sch.uk"
 },
 {
-"title": "SEND Teacher",
-"school": "Ifield Community College",
-"town": "Crawley",
-"lat": 51.1177,
-"lon": -0.2099,
-"miles": 18.2,
-"pay": "£35,602 – £54,328",
-"posted": "2026-11-10",
-"closes": "2026-12-04T12:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/send-teacher-ifield-community-college",
-"kind": "teach",
-"primary": false,
-"website": "https://ifieldcc.org.uk"
-},
-{
 "title": "Teacher of Design Technology",
 "school": "Ifield Community College",
 "town": "Crawley",
@@ -72,6 +57,21 @@
 "posted": "2026-11-10",
 "closes": "2026-12-04T12:00",
 "url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-design-technology-ifield-community-college-crawley-west-sussex",
+"kind": "teach",
+"primary": false,
+"website": "https://ifieldcc.org.uk"
+},
+{
+"title": "SEND Teacher",
+"school": "Ifield Community College",
+"town": "Crawley",
+"lat": 51.1177,
+"lon": -0.2099,
+"miles": 18.2,
+"pay": "£35,602 – £54,328",
+"posted": "2026-11-10",
+"closes": "2026-12-04T12:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/send-teacher-ifield-community-college",
 "kind": "teach",
 "primary": false,
 "website": "https://ifieldcc.org.uk"
@@ -122,6 +122,21 @@
 "website": "http://www.tla.woodard.co.uk/"
 },
 {
+"title": "Maths Teacher",
+"school": "The Sir Robert Woodard Academy",
+"town": "Sompting",
+"lat": 50.8346,
+"lon": -0.3312,
+"miles": 9.8,
+"pay": "£34,069 – £52,835",
+"posted": "2026-11-09",
+"closes": "2026-11-25T23:59",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/maths-teacher-a55d71d1-f781-4542-b938-24dd3950747c",
+"kind": "teach",
+"primary": false,
+"website": "http://www.srwa.woodard.co.uk"
+},
+{
 "title": "Year 5 Teacher",
 "school": "City Academy Whitehawk",
 "town": "Brighton",
@@ -152,21 +167,6 @@
 "website": "https://www.holytrinitycrawley.org.uk/"
 },
 {
-"title": "Teacher of English",
-"school": "Hailsham Academy",
-"town": "Hailsham",
-"lat": 50.8663,
-"lon": 0.2559,
-"miles": 16.0,
-"pay": "£32,916 – £51,047",
-"posted": "2026-10-08",
-"closes": "2026-12-01T08:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-cf13bfd8-3a9a-4863-84da-37b3e850c79b",
-"kind": "teach",
-"primary": true,
-"website": "http://www.hailsham-academy.org"
-},
-{
 "title": "Second in Maths",
 "school": "Brighton Aldridge Community Academy",
 "town": "Brighton",
@@ -180,6 +180,21 @@
 "kind": "teach",
 "primary": false,
 "website": "https://www.baca-uk.org.uk"
+},
+{
+"title": "Teacher of English",
+"school": "Hailsham Academy",
+"town": "Hailsham",
+"lat": 50.8663,
+"lon": 0.2559,
+"miles": 16.0,
+"pay": "£32,916 – £51,047",
+"posted": "2026-10-08",
+"closes": "2026-12-01T08:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-cf13bfd8-3a9a-4863-84da-37b3e850c79b",
+"kind": "teach",
+"primary": true,
+"website": "http://www.hailsham-academy.org"
 },
 {
 "title": "Headteacher",
