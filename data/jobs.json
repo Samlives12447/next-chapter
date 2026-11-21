@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-21T13:29+00:00",
+"updated": "2026-11-21T22:12+00:00",
 "jobs": [
 {
 "title": "Teacher of KS3 / KS4 Computing",
@@ -30,21 +30,6 @@
 "kind": "lead",
 "primary": false,
 "website": "https://www.holytrinitycrawley.org.uk/"
-},
-{
-"title": "SEND Class Teacher",
-"school": "Moulsecoomb Primary School",
-"town": "Brighton",
-"lat": 50.8495,
-"lon": -0.1107,
-"miles": 0.9,
-"pay": "National Teachers Main & Upper Payscales plus SEND Allowance",
-"posted": "2026-11-16",
-"closes": "2026-12-06T23:59",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/send-class-teacher-moulsecoomb-primary-school",
-"kind": "teach",
-"primary": true,
-"website": "https://moulsecoomb.brighton-hove.sch.uk/brighton-hove/primary/moulsecoomb"
 },
 {
 "title": "Headteacher",
