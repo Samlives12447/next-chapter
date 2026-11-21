@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-20T23:06+00:00",
+"updated": "2026-11-21T13:29+00:00",
 "jobs": [
 {
 "title": "Teacher of KS3 / KS4 Computing",
@@ -15,6 +15,21 @@
 "kind": "teach",
 "primary": false,
 "website": "http://www.theforestschool.com/"
+},
+{
+"title": "Headteacher",
+"school": "Holy Trinity CofE Secondary School, Crawley",
+"town": "Crawley",
+"lat": 51.1062,
+"lon": -0.2084,
+"miles": 17.4,
+"pay": "",
+"posted": "2026-11-18",
+"closes": "2026-12-30T12:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/headteacher-holy-trinity-cofe-secondary-school-crawley",
+"kind": "lead",
+"primary": false,
+"website": "https://www.holytrinitycrawley.org.uk/"
 },
 {
 "title": "SEND Class Teacher",
@@ -92,21 +107,6 @@
 "website": "http://www.forgewoodschool.org"
 },
 {
-"title": "Teacher of MFL",
-"school": "Tanbridge House School",
-"town": "Horsham",
-"lat": 51.0651,
-"lon": -0.3516,
-"miles": 17.5,
-"pay": "",
-"posted": "2026-11-09",
-"closes": "2026-11-23T09:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-mfl-tanbridge-house-school-horsham-west-sussex",
-"kind": "teach",
-"primary": false,
-"website": "http://www.tanbridge-house-sch.co.uk"
-},
-{
 "title": "Teacher of Science",
 "school": "The Littlehampton Academy",
 "town": "Littlehampton",
@@ -120,6 +120,21 @@
 "kind": "teach",
 "primary": false,
 "website": "http://www.tla.woodard.co.uk/"
+},
+{
+"title": "Teacher of MFL",
+"school": "Tanbridge House School",
+"town": "Horsham",
+"lat": 51.0651,
+"lon": -0.3516,
+"miles": 17.5,
+"pay": "",
+"posted": "2026-11-09",
+"closes": "2026-11-23T09:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-mfl-tanbridge-house-school-horsham-west-sussex",
+"kind": "teach",
+"primary": false,
+"website": "http://www.tanbridge-house-sch.co.uk"
 },
 {
 "title": "Maths Teacher",
@@ -167,21 +182,6 @@
 "website": "https://www.holytrinitycrawley.org.uk/"
 },
 {
-"title": "Second in Maths",
-"school": "Brighton Aldridge Community Academy",
-"town": "Brighton",
-"lat": 50.858,
-"lon": -0.0912,
-"miles": 0.9,
-"pay": "MPS/UPS + TLR2c",
-"posted": "2026-10-08",
-"closes": "2026-11-29T00:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/second-in-maths-brighton-aldridge-community-academy",
-"kind": "teach",
-"primary": false,
-"website": "https://www.baca-uk.org.uk"
-},
-{
 "title": "Teacher of English",
 "school": "Hailsham Academy",
 "town": "Hailsham",
@@ -195,6 +195,21 @@
 "kind": "teach",
 "primary": true,
 "website": "http://www.hailsham-academy.org"
+},
+{
+"title": "Second in Maths",
+"school": "Brighton Aldridge Community Academy",
+"town": "Brighton",
+"lat": 50.858,
+"lon": -0.0912,
+"miles": 0.9,
+"pay": "MPS/UPS + TLR2c",
+"posted": "2026-10-08",
+"closes": "2026-11-29T00:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/second-in-maths-brighton-aldridge-community-academy",
+"kind": "teach",
+"primary": false,
+"website": "https://www.baca-uk.org.uk"
 },
 {
 "title": "Headteacher",
