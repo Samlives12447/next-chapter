@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-22T13:22+00:00",
+"updated": "2026-11-22T22:29+00:00",
 "jobs": [
 {
 "title": "Headteacher",
@@ -47,21 +47,6 @@
 "website": "http://www.st-marks.w-sussex.sch.uk"
 },
 {
-"title": "Teacher of Design Technology",
-"school": "Ifield Community College",
-"town": "Crawley",
-"lat": 51.1177,
-"lon": -0.2099,
-"miles": 18.2,
-"pay": "£35,602 – £54,328",
-"posted": "2026-11-10",
-"closes": "2026-12-04T12:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-design-technology-ifield-community-college-crawley-west-sussex",
-"kind": "teach",
-"primary": false,
-"website": "https://ifieldcc.org.uk"
-},
-{
 "title": "SEND Teacher",
 "school": "Ifield Community College",
 "town": "Crawley",
@@ -77,19 +62,34 @@
 "website": "https://ifieldcc.org.uk"
 },
 {
-"title": "Teacher of MFL",
-"school": "Tanbridge House School",
-"town": "Horsham",
-"lat": 51.0651,
-"lon": -0.3516,
-"miles": 17.5,
-"pay": "",
-"posted": "2026-11-09",
-"closes": "2026-11-23T09:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-mfl-tanbridge-house-school-horsham-west-sussex",
+"title": "Class Teacher",
+"school": "Forge Wood Primary School",
+"town": "Crawley",
+"lat": 51.1366,
+"lon": -0.1534,
+"miles": 19.1,
+"pay": "GLF Main Pay Range – up to Point 6 (£48,479)",
+"posted": "2026-11-10",
+"closes": "2026-11-29T23:59",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/class-teacher-7590b78a-5d76-4531-95d9-5faeae26255d",
+"kind": "teach",
+"primary": true,
+"website": "http://www.forgewoodschool.org"
+},
+{
+"title": "Teacher of Design Technology",
+"school": "Ifield Community College",
+"town": "Crawley",
+"lat": 51.1177,
+"lon": -0.2099,
+"miles": 18.2,
+"pay": "£35,602 – £54,328",
+"posted": "2026-11-10",
+"closes": "2026-12-04T12:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-design-technology-ifield-community-college-crawley-west-sussex",
 "kind": "teach",
 "primary": false,
-"website": "http://www.tanbridge-house-sch.co.uk"
+"website": "https://ifieldcc.org.uk"
 },
 {
 "title": "Teacher of Science",
@@ -105,6 +105,21 @@
 "kind": "teach",
 "primary": false,
 "website": "http://www.tla.woodard.co.uk/"
+},
+{
+"title": "Teacher of MFL",
+"school": "Tanbridge House School",
+"town": "Horsham",
+"lat": 51.0651,
+"lon": -0.3516,
+"miles": 17.5,
+"pay": "",
+"posted": "2026-11-09",
+"closes": "2026-11-23T09:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-mfl-tanbridge-house-school-horsham-west-sussex",
+"kind": "teach",
+"primary": false,
+"website": "http://www.tanbridge-house-sch.co.uk"
 },
 {
 "title": "Maths Teacher",
