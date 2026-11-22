@@ -1,21 +1,6 @@
 {
-"updated": "2026-11-21T22:12+00:00",
+"updated": "2026-11-22T13:22+00:00",
 "jobs": [
-{
-"title": "Teacher of KS3 / KS4 Computing",
-"school": "The Forest School",
-"town": "Horsham",
-"lat": 51.0588,
-"lon": -0.3081,
-"miles": 16.1,
-"pay": "",
-"posted": "2026-11-20",
-"closes": "2026-12-07T09:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-ks3-ks4-computing",
-"kind": "teach",
-"primary": false,
-"website": "http://www.theforestschool.com/"
-},
 {
 "title": "Headteacher",
 "school": "Holy Trinity CofE Secondary School, Crawley",
@@ -30,6 +15,21 @@
 "kind": "lead",
 "primary": false,
 "website": "https://www.holytrinitycrawley.org.uk/"
+},
+{
+"title": "SEND Class Teacher",
+"school": "Moulsecoomb Primary School",
+"town": "Brighton",
+"lat": 50.8495,
+"lon": -0.1107,
+"miles": 0.9,
+"pay": "National Teachers Main & Upper Payscales plus SEND Allowance",
+"posted": "2026-11-16",
+"closes": "2026-12-06T23:59",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/send-class-teacher-moulsecoomb-primary-school",
+"kind": "teach",
+"primary": true,
+"website": "https://moulsecoomb.brighton-hove.sch.uk/brighton-hove/primary/moulsecoomb"
 },
 {
 "title": "Headteacher",
@@ -77,19 +77,19 @@
 "website": "https://ifieldcc.org.uk"
 },
 {
-"title": "Class Teacher",
-"school": "Forge Wood Primary School",
-"town": "Crawley",
-"lat": 51.1366,
-"lon": -0.1534,
-"miles": 19.1,
-"pay": "GLF Main Pay Range – up to Point 6 (£48,479)",
-"posted": "2026-11-10",
-"closes": "2026-11-29T23:59",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/class-teacher-7590b78a-5d76-4531-95d9-5faeae26255d",
+"title": "Teacher of MFL",
+"school": "Tanbridge House School",
+"town": "Horsham",
+"lat": 51.0651,
+"lon": -0.3516,
+"miles": 17.5,
+"pay": "",
+"posted": "2026-11-09",
+"closes": "2026-11-23T09:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-mfl-tanbridge-house-school-horsham-west-sussex",
 "kind": "teach",
-"primary": true,
-"website": "http://www.forgewoodschool.org"
+"primary": false,
+"website": "http://www.tanbridge-house-sch.co.uk"
 },
 {
 "title": "Teacher of Science",
@@ -105,21 +105,6 @@
 "kind": "teach",
 "primary": false,
 "website": "http://www.tla.woodard.co.uk/"
-},
-{
-"title": "Teacher of MFL",
-"school": "Tanbridge House School",
-"town": "Horsham",
-"lat": 51.0651,
-"lon": -0.3516,
-"miles": 17.5,
-"pay": "",
-"posted": "2026-11-09",
-"closes": "2026-11-23T09:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-mfl-tanbridge-house-school-horsham-west-sussex",
-"kind": "teach",
-"primary": false,
-"website": "http://www.tanbridge-house-sch.co.uk"
 },
 {
 "title": "Maths Teacher",
@@ -167,21 +152,6 @@
 "website": "https://www.holytrinitycrawley.org.uk/"
 },
 {
-"title": "Teacher of English",
-"school": "Hailsham Academy",
-"town": "Hailsham",
-"lat": 50.8663,
-"lon": 0.2559,
-"miles": 16.0,
-"pay": "£32,916 – £51,047",
-"posted": "2026-10-08",
-"closes": "2026-12-01T08:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-cf13bfd8-3a9a-4863-84da-37b3e850c79b",
-"kind": "teach",
-"primary": true,
-"website": "http://www.hailsham-academy.org"
-},
-{
 "title": "Second in Maths",
 "school": "Brighton Aldridge Community Academy",
 "town": "Brighton",
@@ -195,6 +165,21 @@
 "kind": "teach",
 "primary": false,
 "website": "https://www.baca-uk.org.uk"
+},
+{
+"title": "Teacher of English",
+"school": "Hailsham Academy",
+"town": "Hailsham",
+"lat": 50.8663,
+"lon": 0.2559,
+"miles": 16.0,
+"pay": "£32,916 – £51,047",
+"posted": "2026-10-08",
+"closes": "2026-12-01T08:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-cf13bfd8-3a9a-4863-84da-37b3e850c79b",
+"kind": "teach",
+"primary": true,
+"website": "http://www.hailsham-academy.org"
 },
 {
 "title": "Headteacher",
