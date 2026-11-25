@@ -1,6 +1,21 @@
 {
-"updated": "2026-11-24T15:54+00:00",
+"updated": "2026-11-25T01:26+00:00",
 "jobs": [
+{
+"title": "SENCO & Targeted Provision Lead",
+"school": "St Mary's School",
+"town": "Heathfield",
+"lat": 50.9409,
+"lon": 0.2488,
+"miles": 16.6,
+"pay": "",
+"posted": "2026-11-24",
+"closes": "2026-12-11T12:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/senco-targeted-provision-lead",
+"kind": "teach",
+"primary": false,
+"website": "http://www.sabden.org.uk"
+},
 {
 "title": "Teacher of KS3 / KS4 Computing",
 "school": "The Forest School",
@@ -44,7 +59,7 @@
 "url": "https://teaching-vacancies.service.gov.uk/jobs/send-class-teacher-moulsecoomb-primary-school",
 "kind": "teach",
 "primary": true,
-"website": "https://moulsecoomb.brighton-hove.sch.uk/brighton-hove/primary/moulsecoomb"
+"website": "https://www.moulsecoomb.brighton-hove.sch.uk/"
 },
 {
 "title": "Headteacher",
@@ -62,19 +77,19 @@
 "website": "http://www.st-marks.w-sussex.sch.uk"
 },
 {
-"title": "Class Teacher",
-"school": "Forge Wood Primary School",
+"title": "Teacher of Design Technology",
+"school": "Ifield Community College",
 "town": "Crawley",
-"lat": 51.1366,
-"lon": -0.1534,
-"miles": 19.1,
-"pay": "GLF Main Pay Range – up to Point 6 (£48,479)",
+"lat": 51.1177,
+"lon": -0.2099,
+"miles": 18.2,
+"pay": "£35,602 – £54,328",
 "posted": "2026-11-10",
-"closes": "2026-11-29T23:59",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/class-teacher-7590b78a-5d76-4531-95d9-5faeae26255d",
+"closes": "2026-12-04T12:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-design-technology-ifield-community-college-crawley-west-sussex",
 "kind": "teach",
-"primary": true,
-"website": "http://www.forgewoodschool.org"
+"primary": false,
+"website": "https://ifieldcc.org.uk"
 },
 {
 "title": "SEND Teacher",
@@ -92,19 +107,19 @@
 "website": "https://ifieldcc.org.uk"
 },
 {
-"title": "Teacher of Design Technology",
-"school": "Ifield Community College",
+"title": "Class Teacher",
+"school": "Forge Wood Primary School",
 "town": "Crawley",
-"lat": 51.1177,
-"lon": -0.2099,
-"miles": 18.2,
-"pay": "£35,602 – £54,328",
+"lat": 51.1366,
+"lon": -0.1534,
+"miles": 19.1,
+"pay": "GLF Main Pay Range – up to Point 6 (£48,479)",
 "posted": "2026-11-10",
-"closes": "2026-12-04T12:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-design-technology-ifield-community-college-crawley-west-sussex",
+"closes": "2026-11-29T23:59",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/class-teacher-7590b78a-5d76-4531-95d9-5faeae26255d",
 "kind": "teach",
-"primary": false,
-"website": "https://ifieldcc.org.uk"
+"primary": true,
+"website": "http://www.forgewoodschool.org"
 },
 {
 "title": "Teacher of Science",
