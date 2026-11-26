@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-25T15:37+00:00",
+"updated": "2026-11-26T01:00+00:00",
 "jobs": [
 {
 "title": "Alternative Curriculum Teacher (Offsite Provision)",
@@ -15,21 +15,6 @@
 "kind": "teach",
 "primary": false,
 "website": "https://public.dorothy-stringer.co.uk/ds/Pages/Home.aspx"
-},
-{
-"title": "Teacher of Science",
-"school": "Peacehaven Community School",
-"town": "Peacehaven",
-"lat": 50.7961,
-"lon": 0.0031,
-"miles": 6.7,
-"pay": "£34,069 – £52,835",
-"posted": "2026-11-24",
-"closes": "2026-12-08T15:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-science-6f96b661-5a27-495a-bb27-ca86bbaffe38",
-"kind": "teach",
-"primary": false,
-"website": "http://www.phcs.org.uk/"
 },
 {
 "title": "Headteacher",
@@ -92,21 +77,6 @@
 "website": "https://ifieldcc.org.uk"
 },
 {
-"title": "Class Teacher",
-"school": "Forge Wood Primary School",
-"town": "Crawley",
-"lat": 51.1366,
-"lon": -0.1534,
-"miles": 19.1,
-"pay": "GLF Main Pay Range – up to Point 6 (£48,479)",
-"posted": "2026-11-10",
-"closes": "2026-11-29T23:59",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/class-teacher-7590b78a-5d76-4531-95d9-5faeae26255d",
-"kind": "teach",
-"primary": true,
-"website": "http://www.forgewoodschool.org"
-},
-{
 "title": "SEND Teacher",
 "school": "Ifield Community College",
 "town": "Crawley",
@@ -122,6 +92,21 @@
 "website": "https://ifieldcc.org.uk"
 },
 {
+"title": "Class Teacher",
+"school": "Forge Wood Primary School",
+"town": "Crawley",
+"lat": 51.1366,
+"lon": -0.1534,
+"miles": 19.1,
+"pay": "GLF Main Pay Range – up to Point 6 (£48,479)",
+"posted": "2026-11-10",
+"closes": "2026-11-29T23:59",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/class-teacher-7590b78a-5d76-4531-95d9-5faeae26255d",
+"kind": "teach",
+"primary": true,
+"website": "http://www.forgewoodschool.org"
+},
+{
 "title": "Teacher of Science",
 "school": "The Littlehampton Academy",
 "town": "Littlehampton",
@@ -135,21 +120,6 @@
 "kind": "teach",
 "primary": false,
 "website": "http://www.tla.woodard.co.uk/"
-},
-{
-"title": "Maths Teacher",
-"school": "The Sir Robert Woodard Academy",
-"town": "Sompting",
-"lat": 50.8346,
-"lon": -0.3312,
-"miles": 9.8,
-"pay": "£34,069 – £52,835",
-"posted": "2026-11-09",
-"closes": "2026-11-25T23:59",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/maths-teacher-a55d71d1-f781-4542-b938-24dd3950747c",
-"kind": "teach",
-"primary": false,
-"website": "http://www.srwa.woodard.co.uk"
 },
 {
 "title": "Year 5 Teacher",
