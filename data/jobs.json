@@ -1,6 +1,36 @@
 {
-"updated": "2026-11-27T01:01+00:00",
+"updated": "2026-11-27T15:05+00:00",
 "jobs": [
+{
+"title": "Teacher of Science",
+"school": "Bohunt School Worthing",
+"town": "Worthing",
+"lat": 50.8233,
+"lon": -0.3734,
+"miles": 11.8,
+"pay": "£34,069 – £46,940",
+"posted": "2026-11-27",
+"closes": "2026-12-11T12:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-science-6b0adea7-692d-4121-b2e3-f7daf797e8d6",
+"kind": "teach",
+"primary": false,
+"website": "http://www.bohuntworthing.com"
+},
+{
+"title": "Teacher",
+"school": "Oakwood Primary Academy",
+"town": "Eastbourne",
+"lat": 50.8048,
+"lon": 0.2687,
+"miles": 17.0,
+"pay": "M1 £34,069 – M6 £46,940",
+"posted": "2026-11-27",
+"closes": "2026-12-07T09:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-oakwood-primary-academy",
+"kind": "teach",
+"primary": true,
+"website": "http://www.oakwoodprimaryacademy.org"
+},
 {
 "title": "Teacher of Media and Film Studies",
 "school": "Uckfield College",
@@ -32,21 +62,6 @@
 "website": "https://public.dorothy-stringer.co.uk/ds/Pages/Home.aspx"
 },
 {
-"title": "Teacher of Science",
-"school": "Peacehaven Community School",
-"town": "Peacehaven",
-"lat": 50.7961,
-"lon": 0.0031,
-"miles": 6.7,
-"pay": "£34,069 – £52,835",
-"posted": "2026-11-24",
-"closes": "2026-12-08T15:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-science-6f96b661-5a27-495a-bb27-ca86bbaffe38",
-"kind": "teach",
-"primary": false,
-"website": "http://www.phcs.org.uk/"
-},
-{
 "title": "SENCO & Targeted Provision Lead",
 "school": "St Mary's School",
 "town": "Heathfield",
@@ -62,19 +77,19 @@
 "website": "http://www.sabden.org.uk"
 },
 {
-"title": "Teacher of KS3 / KS4 Computing",
-"school": "The Forest School",
-"town": "Horsham",
-"lat": 51.0588,
-"lon": -0.3081,
-"miles": 16.1,
-"pay": "",
-"posted": "2026-11-20",
-"closes": "2026-12-07T09:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-ks3-ks4-computing",
+"title": "Level 3 Nursery Practitioner",
+"school": "Southgate Primary",
+"town": "Crawley",
+"lat": 51.1058,
+"lon": -0.1904,
+"miles": 17.2,
+"pay": "£22,425.08",
+"posted": "2026-11-24",
+"closes": "2026-12-13T23:59",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/level-3-nursery-practitioner-southgate-primary",
 "kind": "teach",
-"primary": false,
-"website": "http://www.theforestschool.com/"
+"primary": true,
+"website": "http://www.southgateprimary.co.uk"
 },
 {
 "title": "Headteacher",
@@ -92,21 +107,6 @@
 "website": "https://www.holytrinitycrawley.org.uk/"
 },
 {
-"title": "SEND Class Teacher",
-"school": "Moulsecoomb Primary School",
-"town": "Brighton",
-"lat": 50.8495,
-"lon": -0.1107,
-"miles": 0.9,
-"pay": "National Teachers Main & Upper Payscales plus SEND Allowance",
-"posted": "2026-11-16",
-"closes": "2026-12-06T23:59",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/send-class-teacher-moulsecoomb-primary-school",
-"kind": "teach",
-"primary": true,
-"website": "https://www.moulsecoomb.brighton-hove.sch.uk/"
-},
-{
 "title": "Headteacher",
 "school": "St. Mark's CofE Primary School",
 "town": "Haywards Heath",
@@ -120,6 +120,21 @@
 "kind": "lead",
 "primary": true,
 "website": "http://www.st-marks.w-sussex.sch.uk"
+},
+{
+"title": "SEND Teacher",
+"school": "Ifield Community College",
+"town": "Crawley",
+"lat": 51.1177,
+"lon": -0.2099,
+"miles": 18.2,
+"pay": "£35,602 – £54,328",
+"posted": "2026-11-10",
+"closes": "2026-12-04T12:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/send-teacher-ifield-community-college",
+"kind": "teach",
+"primary": false,
+"website": "https://ifieldcc.org.uk"
 },
 {
 "title": "Class Teacher",
@@ -197,21 +212,6 @@
 "website": "https://www.holytrinitycrawley.org.uk/"
 },
 {
-"title": "Second in Maths",
-"school": "Brighton Aldridge Community Academy",
-"town": "Brighton",
-"lat": 50.858,
-"lon": -0.0912,
-"miles": 0.9,
-"pay": "MPS/UPS + TLR2c",
-"posted": "2026-10-08",
-"closes": "2026-11-29T00:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/second-in-maths-brighton-aldridge-community-academy",
-"kind": "teach",
-"primary": false,
-"website": "https://www.baca-uk.org.uk"
-},
-{
 "title": "Teacher of English",
 "school": "Hailsham Academy",
 "town": "Hailsham",
@@ -225,6 +225,21 @@
 "kind": "teach",
 "primary": true,
 "website": "http://www.hailsham-academy.org"
+},
+{
+"title": "Second in Maths",
+"school": "Brighton Aldridge Community Academy",
+"town": "Brighton",
+"lat": 50.858,
+"lon": -0.0912,
+"miles": 0.9,
+"pay": "MPS/UPS + TLR2c",
+"posted": "2026-10-08",
+"closes": "2026-11-29T00:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/second-in-maths-brighton-aldridge-community-academy",
+"kind": "teach",
+"primary": false,
+"website": "https://www.baca-uk.org.uk"
 },
 {
 "title": "Headteacher",
