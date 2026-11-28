@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-28T00:33+00:00",
+"updated": "2026-11-28T14:12+00:00",
 "jobs": [
 {
 "title": "Teacher of Science",
@@ -62,6 +62,21 @@
 "website": "https://public.dorothy-stringer.co.uk/ds/Pages/Home.aspx"
 },
 {
+"title": "SENCO & Targeted Provision Lead",
+"school": "St Mary's School",
+"town": "Heathfield",
+"lat": 50.9409,
+"lon": 0.2488,
+"miles": 16.6,
+"pay": "",
+"posted": "2026-11-24",
+"closes": "2026-12-11T12:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/senco-targeted-provision-lead",
+"kind": "teach",
+"primary": false,
+"website": "http://www.sabden.org.uk"
+},
+{
 "title": "Level 3 Nursery Practitioner",
 "school": "Southgate Primary",
 "town": "Crawley",
@@ -77,19 +92,19 @@
 "website": "http://www.southgateprimary.co.uk"
 },
 {
-"title": "Teacher of KS3 / KS4 Computing",
-"school": "The Forest School",
-"town": "Horsham",
-"lat": 51.0588,
-"lon": -0.3081,
-"miles": 16.1,
-"pay": "",
-"posted": "2026-11-20",
-"closes": "2026-12-07T09:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-ks3-ks4-computing",
+"title": "Teacher of Science",
+"school": "Peacehaven Community School",
+"town": "Peacehaven",
+"lat": 50.7961,
+"lon": 0.0031,
+"miles": 6.7,
+"pay": "£34,069 – £52,835",
+"posted": "2026-11-24",
+"closes": "2026-12-08T15:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-science-6f96b661-5a27-495a-bb27-ca86bbaffe38",
 "kind": "teach",
 "primary": false,
-"website": "http://www.theforestschool.com/"
+"website": "http://www.phcs.org.uk/"
 },
 {
 "title": "Headteacher",
@@ -137,21 +152,6 @@
 "website": "http://www.st-marks.w-sussex.sch.uk"
 },
 {
-"title": "SEND Teacher",
-"school": "Ifield Community College",
-"town": "Crawley",
-"lat": 51.1177,
-"lon": -0.2099,
-"miles": 18.2,
-"pay": "£35,602 – £54,328",
-"posted": "2026-11-10",
-"closes": "2026-12-04T12:00",
-"url": "https://teaching-vacancies.service.gov.uk/jobs/send-teacher-ifield-community-college",
-"kind": "teach",
-"primary": false,
-"website": "https://ifieldcc.org.uk"
-},
-{
 "title": "Teacher of Design Technology",
 "school": "Ifield Community College",
 "town": "Crawley",
@@ -162,6 +162,21 @@
 "posted": "2026-11-10",
 "closes": "2026-12-04T12:00",
 "url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-design-technology-ifield-community-college-crawley-west-sussex",
+"kind": "teach",
+"primary": false,
+"website": "https://ifieldcc.org.uk"
+},
+{
+"title": "SEND Teacher",
+"school": "Ifield Community College",
+"town": "Crawley",
+"lat": 51.1177,
+"lon": -0.2099,
+"miles": 18.2,
+"pay": "£35,602 – £54,328",
+"posted": "2026-11-10",
+"closes": "2026-12-04T12:00",
+"url": "https://teaching-vacancies.service.gov.uk/jobs/send-teacher-ifield-community-college",
 "kind": "teach",
 "primary": false,
 "website": "https://ifieldcc.org.uk"
